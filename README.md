@@ -33,6 +33,20 @@ The database behaves like a large Relational Database without the additional ser
 
 # The API
 
+## SQLite Enumerations
+* ConnectionType
+  * DS	=> Data Source => uses standard OS path definitions (C:\Directory\SubDirectory\ )
+
+* Status
+  * Error   => Encountered an error
+  * Valid	=> No Errors Encountered
+
+## SQLite Properties
+* DB_Name       => The name of the database to use
+* DB_Path       => The path associated with the database to use
+* DB_Status		=> The current status of the database
+* Error_MSG     => Current Error message
+
 ## SQLite Methods
 These are the standardized methods to be called for interfacing with SQLite.
 

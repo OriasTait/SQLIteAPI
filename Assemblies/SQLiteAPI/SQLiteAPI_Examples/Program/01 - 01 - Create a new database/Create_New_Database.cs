@@ -42,7 +42,7 @@ namespace SQLiteAPI_Examples
 
 			if (SQLiteDB.DB_Status == SQLite.Status.Error)
 			{
-				Con.WriteLine("Database Error: " + SQLiteDB.Error);
+				Con.WriteLine("Database Error: " + SQLiteDB.Error_MSG);
 			}
 
 			Con.WriteLine();

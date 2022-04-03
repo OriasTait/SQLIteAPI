@@ -42,13 +42,14 @@ namespace SQLiteAPI
         //=============
         // Properties - SQLite Connection Information
         //=============
-        private ConnectionType DB_Conn; // Database Connection Type
+        private ConnectionType DB_Conn;     // Database Connection Type
+        private string ConnectionString;    // Connection String
 
         //=============
         // Properties - SQLite SQL Command Information
         //=============
         public Status DB_Status;    // The current status of the database
-        public string Error;        // Current Error message
+        public string Error_MSG;    // Current Error message
 
         //=============
         // Properties - SQLite SQL Database Information

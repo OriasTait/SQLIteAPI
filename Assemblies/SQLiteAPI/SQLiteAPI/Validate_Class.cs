@@ -37,7 +37,7 @@ namespace SQLiteAPI
                     if (DB_Name == null)
                     {
                         // Add appropriate error message
-                        Error = "Database Name is missing";
+                        Error_MSG = "Database Name is missing";
 
                         // Set the results
                         Results = Status.Error;
@@ -48,10 +48,10 @@ namespace SQLiteAPI
                     {
                         // Add appropriate message separator
                         if (Results == Status.Error)
-                        { Error += "; "; }
+                        { Error_MSG += "; "; }
 
                         // Add appropriate error message
-                        Error += "Database Path is missing";
+                        Error_MSG += "Database Path is missing";
 
                         // Set the results
                         Results = Status.Error;
@@ -62,10 +62,10 @@ namespace SQLiteAPI
                     {
                         // Add appropriate message separator
                         if (Results == Status.Error)
-                        { Error += "; "; }
+                        { Error_MSG += "; "; }
 
                         // Add appropriate error message
-                        Error += "Database Path does not exist";
+                        Error_MSG += "Database Path does not exist";
 
                         // Set the results
                         Results = Status.Error;
