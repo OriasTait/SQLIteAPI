@@ -4,9 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using System.Data.SQLite;   // NuGet Package => System.Data.SQLite
-using System.IO;            // file system class
-
 namespace SQLiteAPI
 {
     public partial class SQLite

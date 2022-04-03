@@ -4,10 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-//=============
-// SQLiteAPI
-//=============
-using SQLiteAPI;
+using SQLiteAPI;	// SQLiteAPI
 
 //=============
 // Aliases
@@ -19,6 +16,16 @@ namespace SQLiteAPI_Examples
 	partial class Program
 	{
 		private static void Create_New_Database()
+		/*
+		===============================================================================================
+		PURPOSE:
+		Provide examples an example of creating a database with both options for Overwrite.
+		-----------------------------------------------------------------------------------------------
+		NOTES:
+		- Because this leverages the SQLiteAPI, the NuGet package System.Data.SQLite.Core has been
+		  included.
+		===============================================================================================
+		*/
 		{
 			//=============
 			// Setup Environment
@@ -38,7 +45,9 @@ namespace SQLiteAPI_Examples
 				DB_Path = @"D:\Work\Code\SQLIteAPI\Working_Dir\"
 			};
 
+			//=============
 			// Create a new databse if it does not exist
+			//=============
 			SQLiteDB.Create_DB(false);
 
 			if (SQLiteDB.DB_Status == SQLite.Status.Error)
@@ -50,7 +59,9 @@ namespace SQLiteAPI_Examples
 				Con.WriteLine("Database " + SQLiteDB.DB_Name + " has been created.");
 			}
 
+			//=============
 			// Create a databse regardless if it exists or not
+			//=============
 			SQLiteDB.Create_DB(true);
 
 			if (SQLiteDB.DB_Status == SQLite.Status.Error)
@@ -62,6 +73,9 @@ namespace SQLiteAPI_Examples
 				Con.WriteLine("Database " + SQLiteDB.DB_Name + " has been created.");
 			}
 
+			//=============
+			// Cleanup Environment
+			//=============
 			Con.WriteLine();
 			Con.Write("Press any key to continue...");
 			Con.ReadKey();

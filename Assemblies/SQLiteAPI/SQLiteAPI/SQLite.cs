@@ -34,7 +34,7 @@ namespace SQLiteAPI
             Valid   // No Errors Encountered
         }
 
-        public enum Validation_Type
+        private enum Validation_Type
         {
             DB_Connection   // Database Connection
         }
