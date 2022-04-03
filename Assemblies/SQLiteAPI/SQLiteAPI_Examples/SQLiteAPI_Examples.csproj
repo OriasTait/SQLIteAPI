@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program\01 - 01 - Create a new database\Create_New_Database.cs" />
+    <Compile Include="Program\02 - 01 - Create and populate tables\Create_and_populate_Tables.cs" />
     <Compile Include="Program\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
