@@ -60,7 +60,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Validate_Class.cs" />
+    <Compile Include="Validate_Class\Validate_Connection_Information.cs" />
+    <Compile Include="Validate_Class\Validate_Class.cs" />
     <Compile Include="Create_Connection_String.cs" />
     <Compile Include="Create_DB.cs" />
     <Compile Include="SQLite.cs" />

@@ -25,6 +25,9 @@ namespace SQLiteAPI
         ===============================================================================================
         */
         {
+            //=============
+            // Variables - Standard
+            //=============
             Status Results = Status.Valid;
 
             //=============
@@ -33,43 +36,7 @@ namespace SQLiteAPI
             switch(Val_Type)
 			{
                 case Validation_Type.DB_Connection:
-                    // Validate the DB_Name has a valie
-                    if (DB_Name == null)
-                    {
-                        // Add appropriate error message
-                        Error_MSG = "Database Name is missing";
-
-                        // Set the results
-                        Results = Status.Error;
-                    }
-
-                    // Validate the DB_Path has a value
-                    if (DB_Path == null)
-                    {
-                        // Add appropriate message separator
-                        if (Results == Status.Error)
-                        { Error_MSG += "; "; }
-
-                        // Add appropriate error message
-                        Error_MSG += "Database Path is missing";
-
-                        // Set the results
-                        Results = Status.Error;
-                    }
-
-                    // Validate the DB_Path exists
-                    if (!Directory.Exists(DB_Path))
-                    {
-                        // Add appropriate message separator
-                        if (Results == Status.Error)
-                        { Error_MSG += "; "; }
-
-                        // Add appropriate error message
-                        Error_MSG += "Database Path does not exist";
-
-                        // Set the results
-                        Results = Status.Error;
-                    }
+                    Results = Validate_Connection_Information();
                     break;
 			}
 

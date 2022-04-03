@@ -38,11 +38,28 @@ namespace SQLiteAPI_Examples
 				DB_Path = @"D:\Work\Code\SQLIteAPI\Working_Dir\"
 			};
 
+			// Create a new databse if it does not exist
+			SQLiteDB.Create_DB(false);
+
+			if (SQLiteDB.DB_Status == SQLite.Status.Error)
+			{
+				Con.WriteLine("Database Error: " + SQLiteDB.Error_MSG);
+			}
+			else
+			{
+				Con.WriteLine("Database " + SQLiteDB.DB_Name + " has been created.");
+			}
+
+			// Create a databse regardless if it exists or not
 			SQLiteDB.Create_DB(true);
 
 			if (SQLiteDB.DB_Status == SQLite.Status.Error)
 			{
 				Con.WriteLine("Database Error: " + SQLiteDB.Error_MSG);
+			}
+			else
+			{
+				Con.WriteLine("Database " + SQLiteDB.DB_Name + " has been created.");
 			}
 
 			Con.WriteLine();

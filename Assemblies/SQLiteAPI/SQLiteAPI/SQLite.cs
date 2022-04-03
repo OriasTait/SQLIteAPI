@@ -42,6 +42,7 @@ namespace SQLiteAPI
         //=============
         // Properties - SQLite Connection Information
         //=============
+        private SQLiteConnection conn;      // SQLite Connection
         private ConnectionType DB_Conn;     // Database Connection Type
         private string ConnectionString;    // Connection String
 
