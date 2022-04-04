@@ -10,6 +10,7 @@ using SQLiteAPI;    // SQLiteAPI
 // Aliases
 //=============
 using Con = System.Console;
+//using SQLiteState = SQLiteAPI.SQLite.Status;
 
 namespace SQLiteAPI_Examples
 {
@@ -52,22 +53,112 @@ namespace SQLiteAPI_Examples
 			//=============
 			// Create Table1
 			//=============
+			if (SQLiteDB.DB_Status == SQLite.Status.Valid)
+			{
+				//=============
+				// If Table 1 exeists, drop it
+				//=============
+				SQLiteDB.SQL = "DROP TABLE IF EXISTS Table1; ";
+				SQLiteDB.ExecuteNonQuery();
 
-			//=============
-			// Create Table2
-			//=============
+				if(SQLiteDB.DB_Status == SQLite.Status.Error)
+				{
+					Con.WriteLine("Create Table1 returned the following error: " + Environment.NewLine + SQLiteDB.Error_MSG);
+				}
+			}
+
+			if (SQLiteDB.DB_Status == SQLite.Status.Valid)
+			{
+				//=============
+				// Create Table1
+				//=============
+				SQLiteDB.SQL =
+				"CREATE TABLE Table1 " +
+				"(" +
+				" Col1 VARCHAR(20), " +
+				" Col2 INT " +
+				")";
+				SQLiteDB.ExecuteNonQuery();
+
+				if (SQLiteDB.DB_Status == SQLite.Status.Error)
+				{
+					Con.WriteLine("Create Table1 returned the following error: " + Environment.NewLine + SQLiteDB.Error_MSG);
+				}
+			}
 
 			//=============
 			// Populate Table1
 			//=============
+			if (SQLiteDB.DB_Status == SQLite.Status.Valid)
+			{
+				SQLiteDB.SQL =
+					"INSERT INTO Table1 " +
+					"(Col1, Col2) " +
+					"VALUES " +
+					"('Row 1 Inserted', 1) " +
+					", ('Row 2 Inserted', 2) " +
+					", ('Row 3 Inserted', 3) " +
+					";";
+				SQLiteDB.ExecuteNonQuery();
+
+				if (SQLiteDB.DB_Status == SQLite.Status.Error)
+				{
+					Con.WriteLine("Populate Table1 returned the following error: " + Environment.NewLine + SQLiteDB.Error_MSG);
+				}
+			}
+
+			//=============
+			// Create Table2
+			//=============
+			if (SQLiteDB.DB_Status == SQLite.Status.Valid)
+			{
+				// Combine drop and create into a single statement
+				SQLiteDB.SQL =
+				"DROP TABLE IF EXISTS Table2; " +
+				"CREATE TABLE Table2 " +
+				"(" +
+				" Col1 VARCHAR(20), " +
+				" Col2 INT " +
+				")";
+				SQLiteDB.ExecuteNonQuery();
+
+				if (SQLiteDB.DB_Status == SQLite.Status.Error)
+				{
+					Con.WriteLine("Create Table1 returned the following error: " + Environment.NewLine + SQLiteDB.Error_MSG);
+				}
+			}
 
 			//=============
 			// Populate Table2
 			//=============
+			if (SQLiteDB.DB_Status == SQLite.Status.Valid)
+			{
+				SQLiteDB.SQL =
+					"INSERT INTO Table2 " +
+					"(Col1, Col2) " +
+					"VALUES " +
+					"('Row 01 Inserted', 1) " +
+					", ('Row 02 Inserted', 2) " +
+					", ('Row 03 Inserted', 3) " +
+					";";
+				SQLiteDB.ExecuteNonQuery();
+
+				if (SQLiteDB.DB_Status == SQLite.Status.Error)
+				{
+					Con.WriteLine("Populate Table1 returned the following error: " + Environment.NewLine + SQLiteDB.Error_MSG);
+				}
+			}
 
 			//=============
 			// Cleanup Environment
 			//=============
+			// If all is successful, indicate it to the user
+			if (SQLiteDB.DB_Status == SQLite.Status.Valid)
+			{
+				Con.WriteLine("Table1 and Tabl2 have been created and populated.");
+			}
+
+			// Wait for the user
 			Con.WriteLine();
 			Con.Write("Press any key to continue...");
 			Con.ReadKey();
