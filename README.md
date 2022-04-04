@@ -46,11 +46,19 @@ The database behaves like a large Relational Database without the additional ser
 * DB_Path       => The path associated with the database to use
 * DB_Status		=> The current status of the database
 * Error_MSG     => Current Error message
+* SQL			=> SQLite Standard Query Language (SQL) command to execute
 
 ## SQLite Methods
 These are the standardized methods to be called for interfacing with SQLite.
 
 ### Create_DB
+Create a database based on the API and if it should overwrite it or not.
+
+### ExecuteNonQuery
+Attempt to execute the command in the property SQL against the database identified with the ConnectionString.
+
+NOTES:
+- It is assumed no results are being returned by the command being executed.
 
 =============
 

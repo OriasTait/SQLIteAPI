@@ -49,8 +49,10 @@ namespace SQLiteAPI
         //=============
         // Properties - SQLite SQL Command Information
         //=============
-        public Status DB_Status;    // The current status of the database
-        public string Error_MSG;    // Current Error message
+        public Status DB_Status;        // The current status of the database
+        public string Error_MSG;        // Current Error message
+        private SQLiteCommand SQL_cmd;  // SQLite SQL Command
+        public string SQL;              // SQLite Standard Query Language command (SQL) to execute
 
         //=============
         // Properties - SQLite SQL Database Information

@@ -15,7 +15,7 @@ namespace SQLiteAPI
         /*
         ===============================================================================================
         PURPOSE:
-        Create a database based on the API and weather it should overwrite it or not.
+        Create a database based on the API and if it should overwrite it or not.
         -----------------------------------------------------------------------------------------------
         PARAMETERS:
         - Overwrite => If the database should be overwritten or not.
@@ -49,10 +49,14 @@ namespace SQLiteAPI
                         conn.Open();  // Open the connection
                         conn.Close(); // Close the connection
                     }
-                    catch  // Error creating the database
+                    catch (Exception ex) // Error creating the database
                     {
                         DB_Status = Status.Error;
-                        Error_MSG = "Unable to create the database: " + DB_Name;
+                        Error_MSG = 
+                            "Create the database " 
+                            + DB_Name 
+                            + " returned the error: " 
+                            + ex.Message.Replace("\r\n", " ");  // Convert the message to one line
                     }
                 }
 
@@ -70,10 +74,14 @@ namespace SQLiteAPI
                             conn.Open();  // Open the connection
                             conn.Close(); // Close the connection
                         }
-                        catch  // Error creating the database
+                        catch (Exception ex) // Error creating the database
                         {
                             DB_Status = Status.Error;
-                            Error_MSG = "Unable to create the database: " + DB_Name;
+                            Error_MSG =
+                                "Create the database "
+                                + DB_Name
+                                + " returned the error: "
+                                + ex.Message.Replace("\r\n", " ");  // Convert the message to one line
                         }
                     }
                     else
