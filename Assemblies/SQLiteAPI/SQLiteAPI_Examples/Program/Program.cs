@@ -66,6 +66,7 @@ namespace SQLiteAPI_Examples
 				Con.WriteLine("01. Create a new database (Press <1>)");
 				Con.WriteLine("02. Create and populate tables in the database (Press <2>)");
 				Con.WriteLine("03. Show data from a table in the database (Press <3>)");
+				Con.WriteLine("04. Show advanced data from a table in the database (Press <4>)");
 				Con.WriteLine();
 				Con.WriteLine("Q. Quit (Press <q>)");
 				Con.WriteLine();
@@ -88,6 +89,12 @@ namespace SQLiteAPI_Examples
 					case ConsoleKey.NumPad3:
 					case ConsoleKey.D3:
 						Show_Data_From_A_Table();
+						break;
+						;
+
+					case ConsoleKey.NumPad4:
+					case ConsoleKey.D4:
+						Show_Advanced_Data_From_A_Table();
 						break;
 						;
 

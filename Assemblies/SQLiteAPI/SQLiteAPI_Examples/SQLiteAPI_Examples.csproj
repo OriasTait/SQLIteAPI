@@ -50,7 +50,8 @@
   <ItemGroup>
     <Compile Include="Program\01 - 01 - Create a new database\Create_New_Database.cs" />
     <Compile Include="Program\02 - 01 - Create And Populate Tables\Create_And_Populate_Tables.cs" />
-    <Compile Include="Program\03 - 01 - Show Data From A Table\Create_New_Database.cs" />
+    <Compile Include="Program\04 - 01 - Show Advanced Data From A Table\Show_Advanced_Data_From_A_Table.cs" />
+    <Compile Include="Program\Create_New_Database.cs" />
     <Compile Include="Program\03 - 01 - Show Data From A Table\Show_Data_From_A_Table.cs" />
     <Compile Include="Program\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
