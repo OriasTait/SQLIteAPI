@@ -19,7 +19,7 @@ namespace SQLiteAPI_Examples
 		/*
 		===============================================================================================
 		PURPOSE:
-		Provide examples an example of creating a database with both options for Overwrite.
+		Provide an example of creating a database with both options for Overwrite.
 		-----------------------------------------------------------------------------------------------
 		NOTES:
 		- Because this leverages the SQLiteAPI, the NuGet package System.Data.SQLite.Core has been

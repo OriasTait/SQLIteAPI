@@ -16,7 +16,17 @@ namespace SQLiteAPI_Examples
 {
 	partial class Program
 	{
-		public static void Create_and_populate_Tables()
+		public static void Create_And_Populate_Tables()
+		/*
+		===============================================================================================
+		PURPOSE:
+		Provide an example of creating 2 tables and populating them with default data.
+		-----------------------------------------------------------------------------------------------
+		NOTES:
+		- Because this leverages the SQLiteAPI, the NuGet package System.Data.SQLite.Core has been
+		  included.
+		===============================================================================================
+		*/
 		{
 			//=============
 			// Setup Environment
@@ -162,6 +172,6 @@ namespace SQLiteAPI_Examples
 			Con.WriteLine();
 			Con.Write("Press any key to continue...");
 			Con.ReadKey();
-		}
+		} // public static void Create_And_Populate_Tables()
 	} // partial class Program
 } // namespace SQLiteAPI_Examples
