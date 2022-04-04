@@ -10,7 +10,6 @@ using SQLiteAPI;    // SQLiteAPI
 // Aliases
 //=============
 using Con = System.Console;
-//using SQLiteState = SQLiteAPI.SQLite.Status;
 
 namespace SQLiteAPI_Examples
 {

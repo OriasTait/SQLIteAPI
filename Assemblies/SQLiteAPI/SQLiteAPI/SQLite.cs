@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;          // System data objects and routines
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,6 +52,7 @@ namespace SQLiteAPI
         //=============
         public Status DB_Status;        // The current status of the database
         public string Error_MSG;        // Current Error message
+        public DataSet QueryResults;    // Results of a query of the database
         private SQLiteCommand SQL_cmd;  // SQLite SQL Command
         public string SQL;              // SQLite Standard Query Language command (SQL) to execute
 

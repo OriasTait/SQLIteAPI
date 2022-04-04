@@ -30,6 +30,11 @@ namespace SQLiteAPI_Examples
 	===============================================================================================
 	*/
 	{
+		public enum Example 
+		{
+			Show_Data	// Example 03 => Show data from a database
+		}
+
 		static void Main(/*string[] args*/)
 		/*
 		===============================================================================================
@@ -60,7 +65,7 @@ namespace SQLiteAPI_Examples
 				Con.WriteLine();
 				Con.WriteLine("01. Create a new database (Press <1>)");
 				Con.WriteLine("02. Create and populate tables in the database (Press <2>)");
-				Con.WriteLine("03. Show from a table in the database (Press <3>)");
+				Con.WriteLine("03. Show data from a table in the database (Press <3>)");
 				Con.WriteLine();
 				Con.WriteLine("Q. Quit (Press <q>)");
 				Con.WriteLine();
