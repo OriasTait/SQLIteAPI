@@ -16,8 +16,28 @@ namespace SQLiteAPI_Examples
 	partial class Program
 	{
 		public static void Create_New_Database(ref SQLite SQLiteDB, Example Program_Example)
-			// Create a database based on the given example
+		// Create a database based on the given example
+		/*
+        ===============================================================================================
+        PURPOSE:
+        Create a database based on the given example.
+        -----------------------------------------------------------------------------------------------
+        PARAMETERS:
+		- SQLiteDB			=> Reference to the SQLite Database to use
+		- Program_Example	=> The example from the program calling this process
+        -----------------------------------------------------------------------------------------------
+        OUTPUT:
+        - If successful, the command has been executed; otherwise, the database state has been updated
+          to Error and the error message has been updated.
+        -----------------------------------------------------------------------------------------------
+        NOTES:
+        - It is assumed no results are being returned by the command being executed.
+        ===============================================================================================
+        */
 		{
+			//=============
+			// Body
+			//=============
 			switch (Program_Example)
 			{
 				case Example.Show_Data:
@@ -59,7 +79,7 @@ namespace SQLiteAPI_Examples
 					}
 
 					break;
-			}
-		}
+			} // switch (Program_Example)
+		} // public static void Create_New_Database(ref SQLite SQLiteDB, Example Program_Example)
 	} // partial class Program
 } // namespace SQLiteAPI_Examples
