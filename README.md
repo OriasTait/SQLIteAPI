@@ -46,6 +46,7 @@ The database behaves like a large Relational Database without the additional ser
 * DB_Path       => The path associated with the database to use
 * DB_Status		=> The current status of the database
 * Error_MSG     => Current Error message
+* QueryResults  => Results of a query of the database.
 * SQL			=> SQLite Standard Query Language (SQL) command to execute
 
 ## SQLite Methods
@@ -58,7 +59,13 @@ Create a database based on the API and if it should overwrite it or not.
 Attempt to execute the command in the property SQL against the database identified with the ConnectionString.
 
 NOTES:
-- It is assumed no results are being returned by the command being executed.
+* This assumes no results are being returned by the command being executed.
+
+### ExecuteQuery
+Execute the SQL in the property CommandText to the database connected to in the Initialize method.
+
+NOTES:
+* This assumes there will be a result set returned by the SQL and places it in the property QueryResults.
 
 =============
 

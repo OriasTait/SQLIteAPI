@@ -30,6 +30,12 @@ namespace SQLiteAPI_Examples
 	===============================================================================================
 	*/
 	{
+		public enum Example 
+		{
+			Show_Data,			// Example 03 => Show data from a select query
+			Show_Advanced_Data	// Example 04 => Show Advanced data from a select query
+		}
+
 		static void Main(/*string[] args*/)
 		/*
 		===============================================================================================
@@ -60,6 +66,8 @@ namespace SQLiteAPI_Examples
 				Con.WriteLine();
 				Con.WriteLine("01. Create a new database (Press <1>)");
 				Con.WriteLine("02. Create and populate tables in the database (Press <2>)");
+				Con.WriteLine("03. Show data from a table in the database (Press <3>)");
+				Con.WriteLine("04. Show advanced data from a table in the database (Press <4>)");
 				Con.WriteLine();
 				Con.WriteLine("Q. Quit (Press <q>)");
 				Con.WriteLine();
@@ -75,7 +83,19 @@ namespace SQLiteAPI_Examples
 
 					case ConsoleKey.NumPad2:
 					case ConsoleKey.D2:
-						Create_and_populate_Tables();
+						Create_And_Populate_Tables();
+						break;
+						;
+
+					case ConsoleKey.NumPad3:
+					case ConsoleKey.D3:
+						Show_Data_From_A_Table();
+						break;
+						;
+
+					case ConsoleKey.NumPad4:
+					case ConsoleKey.D4:
+						Show_Advanced_Data_From_A_Table();
 						break;
 						;
 
