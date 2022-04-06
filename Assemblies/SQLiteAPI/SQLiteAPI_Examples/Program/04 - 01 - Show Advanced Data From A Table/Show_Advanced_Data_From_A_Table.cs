@@ -42,41 +42,117 @@ namespace SQLiteAPI_Examples
 			Con.WriteLine();
 
 			// Create database
-			Create_New_Database(ref SQLiteDB, Example.Show_Advanced_Data);  // <===== Stopped here
+			Create_New_Database(ref SQLiteDB, Example.Show_Advanced_Data);
 
-			//// Show the results of setting up the environment
-			//if (SQLiteDB.DB_Status == SQLite.Status.Valid)
-			//{
-			//	Con.WriteLine("Database, Table and Data have been created.");
-			//}
-			//else
-			//{
-			//	Con.WriteLine("Encountered the following error: " + SQLiteDB.Error_MSG);
-			//}
+			//=============
+			// Query the tables
+			//=============
+			if (SQLiteDB.DB_Status == SQLite.Status.Valid)
+			{
+				SQLiteDB.SQL =
+					"SELECT Col1, Col2 FROM Table1; " +
+					"SELECT * FROM Table2; ";
+				SQLiteDB.ExecuteQuery();
+			}
+			else 
+			{
+				Con.WriteLine("Encountered the following error: " + SQLiteDB.Error_MSG);
+				Con.WriteLine();
+			}
 
-			////=============
-			//// Show the data
-			////=============
-			//// Define what data to show
-			//SQLiteDB.SQL =
-			//	"SELECT Col1, Col2 FROM Table1; ";
-			//SQLiteDB.ExecuteQuery();
+			//=============
+			// Show some information about the results
+			//=============
+			if (SQLiteDB.DB_Status == SQLite.Status.Valid)
+			{
+				// How many results sets are there?
+				Con.WriteLine("There are {0} result sets. {1}", SQLiteDB.QueryResults.Tables.Count, Environment.NewLine);
 
-			//// Display the data from the QueryResults
-			//Con.WriteLine();
-			//Con.WriteLine("The data from the table:");
+				// Identify each of the result sets
+				DataTableCollection collection = SQLiteDB.QueryResults.Tables;
+				for (int i = 0; i < collection.Count; i++)
+				{
+					//=============
+					// Table Information
+					//=============
+					DataTable table = collection[i];  // Collection ID
+					Con.WriteLine("Result Collection {0}: Resultset Name \"{1}\"", i, table.TableName);  // Table name
 
-			//foreach (DataRow r in SQLiteDB.QueryResults.Tables[0].Rows)
-			//{
-			//	Con.Write(" | ");
+					//=============
+					// Column Information
+					//=============
+					if (i == 0)
+					{
+						// We know there are 2 columns, so we can hard-code them
+						Con.WriteLine("Column information hard coded:");
+						Con.WriteLine("Column Name: {0} => Column Type: {1}"
+							, SQLiteDB.QueryResults.Tables[i].Columns[0].ColumnName
+							, SQLiteDB.QueryResults.Tables[i].Columns[0].DataType.ToString());
+						Con.WriteLine("Column Name: {0} => Column Type: {1}"
+							, SQLiteDB.QueryResults.Tables[i].Columns[1].ColumnName
+							, SQLiteDB.QueryResults.Tables[i].Columns[1].DataType.ToString());
+					}
+					else 
+					{
+						// Or we can find the information programatically
+						Con.WriteLine("Column information programatically:");
+						foreach (DataColumn column in SQLiteDB.QueryResults.Tables[i].Columns)
+						{
+							Con.WriteLine("Column Name: {0} => Column Type: {1}", column.ColumnName, column.DataType);
+						}
+					}
 
-			//	foreach (DataColumn column in SQLiteDB.QueryResults.Tables[0].Columns)
-			//	{
-			//		Con.Write(r[column].ToString() + " | ");
-			//	}
+					//=============
+					// Row Information
+					//=============
+					Con.WriteLine("This resultset has {0} rows.", SQLiteDB.QueryResults.Tables[i].Rows.Count);
 
-			//	Con.WriteLine();
-			//}
+					//=============
+					// Show the data
+					//=============
+					if (i == 0)
+					{
+						//=============
+						// Using the column names
+						//=============
+						// Obtain the column information; we know there are 2, so they are hard-coded
+						string Col1Name = SQLiteDB.QueryResults.Tables[i].Columns[0].ColumnName;
+						string Col2Name = SQLiteDB.QueryResults.Tables[i].Columns[1].ColumnName;
+
+						Con.WriteLine("The resultset:");
+
+						foreach (DataRow r in SQLiteDB.QueryResults.Tables[i].Rows)
+						{
+							string TableData = string.Empty;
+
+							// Access the column data by name
+							TableData = " | " + r[Col1Name].ToString() + " | " + r[Col2Name].ToString() + " | ";
+
+							Con.WriteLine(TableData);
+						}
+					}
+					else
+					{
+						//=============
+						// Programatically
+						//=============
+						Con.WriteLine("The resultset:");
+						foreach (DataRow r in SQLiteDB.QueryResults.Tables[i].Rows)
+						{
+							Con.Write(" | ");
+
+							foreach (DataColumn column in SQLiteDB.QueryResults.Tables[i].Columns)
+							{
+								Con.Write(r[column].ToString() + " | ");
+							}
+
+							Con.WriteLine();
+						}
+					}
+
+					Con.WriteLine();
+				}
+			}
 
 			//=============
 			// Cleanup Environment

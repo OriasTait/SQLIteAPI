@@ -80,7 +80,6 @@ namespace SQLiteAPI_Examples
 					"VALUES " +
 					"('Table2 Row 1 Inserted', 1) " +
 					", ('Table2 Row 2 Inserted', 2) " +
-					", ('Table2 Row 3 Inserted', 3) " +
 					";";
 				SQLiteDB.ExecuteNonQuery();
 			}

@@ -54,13 +54,16 @@ namespace SQLiteAPI_Examples
 			}
 
 			//=============
-			// Show the data
+			// Query the data
 			//=============
 			// Define what data to show
 			SQLiteDB.SQL =
 				"SELECT Col1, Col2 FROM Table1; ";
 			SQLiteDB.ExecuteQuery();
 
+			//=============
+			// Show the data
+			//=============
 			// Display the data from the QueryResults
 			Con.WriteLine();
 			Con.WriteLine("The data from the table:");
