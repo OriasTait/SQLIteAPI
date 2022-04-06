@@ -32,7 +32,8 @@ namespace SQLiteAPI_Examples
 	{
 		public enum Example 
 		{
-			Show_Data	// Example 03 => Show data from a database
+			Show_Data,			// Example 03 => Show data from a select query
+			Show_Advanced_Data	// Example 04 => Show Advanced data from a select query
 		}
 
 		static void Main(/*string[] args*/)

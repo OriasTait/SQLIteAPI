@@ -29,10 +29,10 @@ namespace SQLiteAPI_Examples
 		===============================================================================================
 		*/
 		{
-			////=============
-			//// Variables - SQLite
-			////=============
-			//SQLite SQLiteDB = new SQLite();
+			//=============
+			// Variables - SQLite
+			//=============
+			SQLite SQLiteDB = new SQLite();
 
 			//=============
 			// Setup Environment
@@ -41,8 +41,8 @@ namespace SQLiteAPI_Examples
 			Con.Clear();
 			Con.WriteLine();
 
-			//// Create database
-			//Create_New_Database(ref SQLiteDB, Example.Show_Data);
+			// Create database
+			Create_New_Database(ref SQLiteDB, Example.Show_Advanced_Data);  // <===== Stopped here
 
 			//// Show the results of setting up the environment
 			//if (SQLiteDB.DB_Status == SQLite.Status.Valid)

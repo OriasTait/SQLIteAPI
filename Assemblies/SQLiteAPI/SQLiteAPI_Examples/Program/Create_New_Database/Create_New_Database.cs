@@ -16,7 +16,6 @@ namespace SQLiteAPI_Examples
 	partial class Program
 	{
 		public static void Create_New_Database(ref SQLite SQLiteDB, Example Program_Example)
-		// Create a database based on the given example
 		/*
         ===============================================================================================
         PURPOSE:
@@ -29,9 +28,6 @@ namespace SQLiteAPI_Examples
         OUTPUT:
         - If successful, the command has been executed; otherwise, the database state has been updated
           to Error and the error message has been updated.
-        -----------------------------------------------------------------------------------------------
-        NOTES:
-        - It is assumed no results are being returned by the command being executed.
         ===============================================================================================
         */
 		{
@@ -41,43 +37,11 @@ namespace SQLiteAPI_Examples
 			switch (Program_Example)
 			{
 				case Example.Show_Data:
-					SQLiteDB.DB_Name = "Select_Data_Database.db";
-					SQLiteDB.DB_Path = @"D:\Work\Code\SQLIteAPI\Working_Dir\";
+					Create_Database_03(ref SQLiteDB);
+					break;
 
-					try // Setup the database, table and data to query
-					{
-						// Create the database
-						SQLiteDB.Create_DB(true);
-
-						// Create the table
-						SQLiteDB.SQL =
-						"CREATE TABLE Table1 " +
-						"(" +
-						" Col1 VARCHAR(20), " +
-						" Col2 INT " +
-						")";
-						SQLiteDB.ExecuteNonQuery();
-
-						// Populate the table
-						SQLiteDB.SQL =
-							"INSERT INTO Table1 " +
-							"(Col1, Col2) " +
-							"VALUES " +
-							"('Row 1 Inserted', 1) " +
-							", ('Row 2 Inserted', 2) " +
-							", ('Row 3 Inserted', 3) " +
-							";";
-						SQLiteDB.ExecuteNonQuery();
-					}
-
-					catch (Exception ex)  // Catch => Update state to error
-					{
-						SQLiteDB.DB_Status = SQLite.Status.Error;
-
-						// Catch the error
-						SQLiteDB.Error_MSG = ex.Message.Replace("\r\n", " ");  // Convert the message to one line
-					}
-
+				case Example.Show_Advanced_Data:
+					Create_Database_04(ref SQLiteDB);
 					break;
 			} // switch (Program_Example)
 		} // public static void Create_New_Database(ref SQLite SQLiteDB, Example Program_Example)
