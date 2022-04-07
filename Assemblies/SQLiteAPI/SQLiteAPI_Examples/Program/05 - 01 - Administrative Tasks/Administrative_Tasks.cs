@@ -28,57 +28,69 @@ namespace SQLiteAPI_Examples
 		===============================================================================================
 		*/
 		{
-			////=============
-			//// Variables - SQLite
-			////=============
-			//SQLite SQLiteDB = new SQLite();
+			//=============
+			// Variables - Standard
+			//=============
+			bool ExitAdminLoop = false;
+
+			//=============
+			// Variables - SQLite
+			//=============
+			SQLite SQLiteDB = new SQLite();
 
 			//=============
 			// Setup Environment
 			//=============
 			// Clear the screen
 			Con.Clear();
-			Con.WriteLine();
 
-			//// Create database
-			//Create_New_Database(ref SQLiteDB, Example.Show_Data);
+			// Create database
+			Create_New_Database(ref SQLiteDB, Example.Administion);
 
-			//// Show the results of setting up the environment
-			//if (SQLiteDB.DB_Status == SQLite.Status.Valid)
-			//{
-			//	Con.WriteLine("Database, Table and Data have been created.");
-			//}
-			//else
-			//{
-			//	Con.WriteLine("Encountered the following error: " + SQLiteDB.Error_MSG);
-			//}
+			//=============
+			// Body
+			//=============
+			// Loop through the options
+			while (!ExitAdminLoop)
+			{
+				// Main Menu
+				Con.WriteLine();
+				Con.WriteLine("-------------------------");
+				Con.WriteLine("Administrative Tasks MENU");
+				Con.WriteLine("-------------------------");
+				Con.WriteLine();
+				Con.WriteLine("01. Shrink database (Press <1>)");
+				Con.WriteLine();
+				Con.WriteLine("Q. Quit (Press <q>)");
+				Con.WriteLine();
+				Con.Write("Desired Action: ");
 
-			////=============
-			//// Query the data
-			////=============
-			//// Define what data to show
-			//SQLiteDB.SQL =
-			//	"SELECT Col1, Col2 FROM Table1; ";
-			//SQLiteDB.ExecuteQuery();
+				switch (Con.ReadKey().Key)
+				{
+					case ConsoleKey.NumPad1:
+					case ConsoleKey.D1:
+						SQLiteDB.Shrink();
+						break;
+						;
 
-			////=============
-			//// Show the data
-			////=============
-			//// Display the data from the QueryResults
-			//Con.WriteLine();
-			//Con.WriteLine("The data from the table:");
+					case ConsoleKey.Q:
+						ExitAdminLoop = true;
+						break;
+				}
 
-			//foreach (DataRow r in SQLiteDB.QueryResults.Tables[0].Rows)
-			//{
-			//	Con.Write(" | ");
+				if (SQLiteDB.DB_Status == SQLite.Status.Error)
+				{
+					Con.WriteLine();
+					Con.WriteLine("Encountered an error: " + SQLiteDB.Error_MSG);
 
-			//	foreach (DataColumn column in SQLiteDB.QueryResults.Tables[0].Columns)
-			//	{
-			//		Con.Write(r[column].ToString() + " | ");
-			//	}
+					ExitAdminLoop = true;
+				}
 
-			//	Con.WriteLine();
-			//}
+				if (!ExitAdminLoop)
+				{
+					Con.Clear();
+				}
+			}
 
 			//=============
 			// Cleanup Environment

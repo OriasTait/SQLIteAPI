@@ -24,50 +24,10 @@ namespace SQLiteAPI
         */
         {
             //=============
-            // Variables - Standard
-            //=============
-            //Status Results = Status.Valid;
-
-            //=============
-            // Setup Environment
-            //=============
-            //Error = string.Empty;  // Ensure the database error message is empty
-
-            //=============
             // Body
             //=============
             SQL = "VACUUM;";
             ExecuteNonQuery();
-
-            //try
-            //{
-            //    // Create the SQL Command to Execute
-            //    //SQL_cmd = conn.CreateCommand();
-            //    SQL = "VACUUM;";
-
-            //    // Execute the command
-            //    //conn.Open();
-            //    ExecuteNonQuery();
-            //}
-            //catch (SQLiteException ex)
-            //{
-            //    // Save the error message
-            //    //Error = ex.Message;
-            //    //Results = Status.Error;
-            //}
-
-            ////=============
-            //// Cleanup Environment
-            ////=============
-            //finally
-            //{
-            //    conn.Close();       // Close the connection the database
-            //    SQL_cmd.Dispose();  // Remove the command from memory
-            //    SQL = string.Empty; // Ensure the SQL is empty
-            //}
-
-            // Return the results
-            //return Results;
         } // public Status Shrink()
     } // public partial class SQLite
 } // namespace SQLiteAPI
