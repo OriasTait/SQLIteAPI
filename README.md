@@ -67,6 +67,9 @@ Execute the SQL in the property CommandText to the database connected to in the 
 NOTES:
 * This assumes there will be a result set returned by the SQL and places it in the property QueryResults.
 
+### Shrink
+Re-organize the database to use the minimal amount of disk space.
+
 =============
 
 #How to compile

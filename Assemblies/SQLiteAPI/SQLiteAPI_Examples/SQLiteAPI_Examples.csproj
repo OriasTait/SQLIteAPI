@@ -51,6 +51,8 @@
     <Compile Include="Program\01 - 01 - Create a new database\Create_New_Database.cs" />
     <Compile Include="Program\02 - 01 - Create And Populate Tables\Create_And_Populate_Tables.cs" />
     <Compile Include="Program\04 - 01 - Show Advanced Data From A Table\Show_Advanced_Data_From_A_Table.cs" />
+    <Compile Include="Program\05 - 01 - Administrative Tasks\Administrative_Tasks.cs" />
+    <Compile Include="Program\Create_New_Database\Create_Database_05.cs" />
     <Compile Include="Program\Create_New_Database\Create_Database_04.cs" />
     <Compile Include="Program\Create_New_Database\Create_Database_03.cs" />
     <Compile Include="Program\Create_New_Database\Create_New_Database.cs" />

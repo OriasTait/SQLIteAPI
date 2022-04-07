@@ -15,11 +15,11 @@ namespace SQLiteAPI_Examples
 {
 	partial class Program
 	{
-		private static void Create_Database_04(ref SQLite SQLiteDB)
+		private static void Create_Database_05(ref SQLite SQLiteDB)
 		/*
         ===============================================================================================
         PURPOSE:
-        Create a database and appropriate database objects for example 04.
+        Create a database and appropriate database objects for example 05.
         -----------------------------------------------------------------------------------------------
         PARAMETERS:
 		- SQLiteDB	=> Reference to the SQLite Database to use
@@ -33,7 +33,7 @@ namespace SQLiteAPI_Examples
 			//=============
 			// Configure the database
 			//=============
-			SQLiteDB.DB_Name = "Select_Data_4_Database.db";
+			SQLiteDB.DB_Name = "Admin_5_Database.db";
 			SQLiteDB.DB_Path = @"D:\Work\Code\SQLIteAPI\Working_Dir\";
 
 			//=============
@@ -80,6 +80,27 @@ namespace SQLiteAPI_Examples
 					"VALUES " +
 					"('Table2 Row 1 Inserted', 1) " +
 					", ('Table2 Row 2 Inserted', 2) " +
+					", ('Table2 Row 3 Inserted', 3) " +
+					";";
+				SQLiteDB.ExecuteNonQuery();
+
+				// Create the table
+				SQLiteDB.SQL =
+				"CREATE TABLE Table3 " +
+				"(" +
+				" Col1 VARCHAR(20), " +
+				" Col2 INT " +
+				")";
+				SQLiteDB.ExecuteNonQuery();
+
+				// Populate the table
+				SQLiteDB.SQL =
+					"INSERT INTO Table3 " +
+					"(Col1, Col2) " +
+					"VALUES " +
+					"('Table3 Row 1 Inserted', 1) " +
+					", ('Table3 Row 2 Inserted', 2) " +
+					", ('Table3 Row 3 Inserted', 3) " +
 					";";
 				SQLiteDB.ExecuteNonQuery();
 			}
@@ -94,6 +115,6 @@ namespace SQLiteAPI_Examples
 				// Catch the error
 				SQLiteDB.Error_MSG = ex.Message.Replace("\r\n", " ");  // Convert the message to one line
 			}
-		} // public static void Create_Database_04(ref SQLite SQLiteDB)
+		} // public static void Create_Database_05(ref SQLite SQLiteDB)
 	} // partial class Program
 } // namespace SQLiteAPI_Examples
