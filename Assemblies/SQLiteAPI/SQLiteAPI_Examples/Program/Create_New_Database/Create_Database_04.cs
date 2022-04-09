@@ -33,6 +33,7 @@ namespace SQLiteAPI_Examples
 			//=============
 			// Configure the database
 			//=============
+			SQLiteDB.DB_Conn = SQLite.ConnectionType.DS;
 			SQLiteDB.DB_Name = "Select_Data_4_Database.db";
 			SQLiteDB.DB_Path = @"D:\Work\Code\SQLIteAPI\Working_Dir\";
 

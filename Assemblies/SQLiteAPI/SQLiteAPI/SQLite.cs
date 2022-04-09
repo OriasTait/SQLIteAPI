@@ -24,9 +24,10 @@ namespace SQLiteAPI
         //=============
         // Enumerations
         //=============
-        private enum ConnectionType
+        public enum ConnectionType
         {
-            DS  // Data Source => uses standard OS path definitions (C:\Directory\SubDirectory\)
+            DS,  // Data Source => uses standard OS path definitions (C:\Directory\SubDirectory\)
+            URI  // Uniform Resource Identifier
         }
 
         public enum Status
@@ -44,7 +45,7 @@ namespace SQLiteAPI
         // Properties - SQLite Connection Information
         //=============
         private SQLiteConnection conn;      // SQLite Connection
-        private ConnectionType DB_Conn;     // Database Connection Type
+        public ConnectionType DB_Conn;      // Database Connection Type
         private string ConnectionString;    // Connection String
 
         //=============

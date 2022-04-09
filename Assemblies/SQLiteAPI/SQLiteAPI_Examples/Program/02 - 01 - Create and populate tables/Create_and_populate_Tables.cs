@@ -41,6 +41,7 @@ namespace SQLiteAPI_Examples
 			SQLite SQLiteDB = new SQLite
 			{
 				// Define the specifics for this database
+				DB_Conn = SQLite.ConnectionType.DS,
 				DB_Name = "Table_Database.db",
 				DB_Path = @"D:\Work\Code\SQLIteAPI\Working_Dir\"
 			};
