@@ -60,7 +60,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Shrink.cs" />
+    <Compile Include="Administrative Tasks\Check_DB.cs" />
+    <Compile Include="Administrative Tasks\Shrink.cs" />
     <Compile Include="Execute_Queries\ExecuteQuery.cs" />
     <Compile Include="Execute_Queries\ExecuteNonQuery.cs" />
     <Compile Include="Validate_Class\Validate_Connection_Information.cs" />

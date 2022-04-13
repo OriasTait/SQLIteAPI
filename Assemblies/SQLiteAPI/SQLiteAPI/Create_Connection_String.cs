@@ -36,9 +36,6 @@ namespace SQLiteAPI
             Error_MSG = string.Empty;       // Ensure the API Error message is empty
             DB_Status = Status.Valid;   // Assume a valid state
 
-            // Set the appropriate Connection Type
-            DB_Conn = ConnectionType.DS;
-
             // Validate the required fields
             Results = Validate_Class(Validation_Type.DB_Connection);
 
@@ -55,6 +52,10 @@ namespace SQLiteAPI
                     case ConnectionType.DS:
                         // Define the connection String
                         ConnectionString = "Data Source=\"" + DB_Path + DB_Name + "\"; Compress = True; ";
+                        break;
+
+                    case ConnectionType.URI:
+                        ConnectionString = "URI=file:" + DB_Path + DB_Name + "; Compress = True; ";
                         break;
 
                     default:

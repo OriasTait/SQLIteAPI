@@ -35,13 +35,17 @@ The database behaves like a large Relational Database without the additional ser
 
 ## SQLite Enumerations
 * ConnectionType
-  * DS	=> Data Source => uses standard OS path definitions (C:\Directory\SubDirectory\ )
+  * DS	=> Data Source => Uses standard OS path definitions (C:\Directory\SubDirectory\ )
+  * URI	=> Uniform Resource Identifier (Application.dataPath + "/Plugins/SQLite_DBs/")
 
 * Status
-  * Error   => Encountered an error
-  * Valid	=> No Errors Encountered
+  * Critical    => Encountered a critical state
+  * Error		=> Encountered an error
+  * Valid		=> No Errors Encountered
+  * Warning		=> Encountered a warning state
 
 ## SQLite Properties
+* DB_Conn		=> Database Connection Type
 * DB_Name       => The name of the database to use
 * DB_Path       => The path associated with the database to use
 * DB_Status		=> The current status of the database
