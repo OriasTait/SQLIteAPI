@@ -39,8 +39,10 @@ The database behaves like a large Relational Database without the additional ser
   * URI	=> Uniform Resource Identifier (Application.dataPath + "/Plugins/SQLite_DBs/")
 
 * Status
-  * Error   => Encountered an error
-  * Valid	=> No Errors Encountered
+  * Critical    => Encountered a critical state
+  * Error		=> Encountered an error
+  * Valid		=> No Errors Encountered
+  * Warning		=> Encountered a warning state
 
 ## SQLite Properties
 * DB_Conn		=> Database Connection Type

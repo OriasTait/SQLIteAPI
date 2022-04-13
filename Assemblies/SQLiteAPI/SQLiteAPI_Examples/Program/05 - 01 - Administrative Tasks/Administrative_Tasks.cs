@@ -60,6 +60,7 @@ namespace SQLiteAPI_Examples
 				Con.WriteLine("-------------------------");
 				Con.WriteLine();
 				Con.WriteLine("01. Shrink database (Press <1>)");
+				//Con.WriteLine("02. Database Size (Press <2>)");
 				Con.WriteLine();
 				Con.WriteLine("Q. Quit (Press <q>)");
 				Con.WriteLine();
@@ -72,6 +73,12 @@ namespace SQLiteAPI_Examples
 						SQLiteDB.Shrink();
 						break;
 						;
+
+					//case ConsoleKey.NumPad2:
+					//case ConsoleKey.D2:
+					//	Check_The_Database(ref SQLiteDB);
+					//	break;
+					//	;
 
 					case ConsoleKey.Q:
 						ExitAdminLoop = true;

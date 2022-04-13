@@ -32,8 +32,10 @@ namespace SQLiteAPI
 
         public enum Status
         {
-            Error,  // Encountered an error
-            Valid   // No Errors Encountered
+            Valid,      // No Errors Encountered
+            Error,      // Encountered an error
+            Warning,    // Encountered a warning state
+            Critical    // Encountered a critical state
         }
 
         private enum Validation_Type
@@ -62,5 +64,26 @@ namespace SQLiteAPI
         //=============
         public string DB_Name;  // The name of the database to use
         public string DB_Path;  // The path associated with the database to use
+
+        //=============
+        // Properties - Database Size in Bytes
+        //=============
+        private long DB_Max_Bytes;      // Max size in bytes
+        private float DB_Warning_Min;   // Min size for warning
+        private float DB_Critical_Min;  // Min size for critical warning
+        private float DB_Error_Min;     // Min size for error
+        public long DB_Max_Size 
+        {
+            get { return DB_Max_Bytes; }
+            set
+			{
+                DB_Max_Bytes = value;
+                DB_Warning_Min = value * .75f;
+                DB_Critical_Min = value * .90f;
+                DB_Error_Min = value * .99f;
+            }
+        }
+
+        private long DB_Current_Size;   // The current size of the database
     } // public partial class SQLite
 } // namespace SQLiteAPI
