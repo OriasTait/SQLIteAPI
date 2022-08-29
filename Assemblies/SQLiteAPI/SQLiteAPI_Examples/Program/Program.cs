@@ -117,7 +117,7 @@ namespace SQLiteAPI_Examples
 				{
 					Con.Clear();
 				}
-			}
+			} // while (!ExitMainLoop)
 		} // static void Main(/*string[] args*/)
 	} // partial class Program
 } // namespace SQLiteAPI_Examples

@@ -51,7 +51,7 @@ namespace SQLiteAPI
         private string ConnectionString;    // Connection String
 
         //=============
-        // Properties - SQLite SQL Command Information
+        // Properties - SQLite Command Information
         //=============
         public Status DB_Status;        // The current status of the database
         public string Error_MSG;        // Current Error message
@@ -60,7 +60,7 @@ namespace SQLiteAPI
         public string SQL;              // SQLite Standard Query Language command (SQL) to execute
 
         //=============
-        // Properties - SQLite SQL Database Information
+        // Properties - SQLite Database Information
         //=============
         public string DB_Name;  // The name of the database to use
         public string DB_Path;  // The path associated with the database to use

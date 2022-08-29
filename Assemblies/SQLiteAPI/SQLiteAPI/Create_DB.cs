@@ -66,7 +66,7 @@ namespace SQLiteAPI
                 else
 				{
                     // Check if file exists
-                    if (!File.Exists(DB_Path + "\\" + DB_Name))
+                    if (File.Exists(DB_Path + "\\" + DB_Name))
                     {
 						try
                         {
