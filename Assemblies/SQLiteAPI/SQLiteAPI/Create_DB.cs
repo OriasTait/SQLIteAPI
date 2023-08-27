@@ -11,6 +11,8 @@ namespace SQLiteAPI
 {
     public partial class SQLite
     {
+        private const string Path_Divider = @"\";
+
         public void Create_DB(bool Overwrite)
         /*
         ===============================================================================================
@@ -38,11 +40,12 @@ namespace SQLiteAPI
                 //=============
                 if (Overwrite)
                 {
+                    string Full_DB_Path = DB_Path + Path_Divider + DB_Name;
                     try
                     {
-                        if (File.Exists(DB_Path + "\\" + DB_Name)) 
+                        if (File.Exists(Full_DB_Path)) 
                         {
-                            File.Delete(DB_Path + "\\" + DB_Name);
+                            File.Delete(Full_DB_Path);
                         }
                         
                         conn = new SQLiteConnection(ConnectionString);  // Create a connection to the database
@@ -66,7 +69,7 @@ namespace SQLiteAPI
                 else
 				{
                     // Check if file exists
-                    if (File.Exists(DB_Path + "\\" + DB_Name))
+                    if (File.Exists(DB_Path + Path_Divider + DB_Name))
                     {
 						try
                         {
@@ -90,7 +93,7 @@ namespace SQLiteAPI
                         Error_MSG = "Cannot create the database: a database with that name already exists.";
 					}
                 } // if (!Overwrite)
-            } // if (DB_Status == Status.Valid)
-        } // public void Create_DB(bool Overwrite)
+            } // if DB_Status == Status.Valid
+        } // public void Create_DB
     } // public partial class SQLite
 } // namespace SQLiteAPI

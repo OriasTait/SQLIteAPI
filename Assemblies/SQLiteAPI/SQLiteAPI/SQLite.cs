@@ -47,23 +47,31 @@ namespace SQLiteAPI
         // Properties - SQLite Connection Information
         //=============
         private SQLiteConnection conn;      // SQLite Connection
-        public ConnectionType DB_Conn;      // Database Connection Type
+        public ConnectionType DB_Conn       // Database Connection Type
+        { get; set; }
         private string ConnectionString;    // Connection String
 
         //=============
         // Properties - SQLite Command Information
         //=============
-        public Status DB_Status;        // The current status of the database
-        public string Error_MSG;        // Current Error message
-        public DataSet QueryResults;    // Results of a query of the database
-        private SQLiteCommand SQL_cmd;  // SQLite SQL Command
-        public string SQL;              // SQLite Standard Query Language command (SQL) to execute
+        public Status DB_Status         // The current status of the database
+        { get; set; }
+        public string Error_MSG         // Current Error message
+        { get; set; }
+        public DataSet QueryResults     // Results of a query of the database
+        { get; set; }
+        private SQLiteCommand SQL_cmd   // SQLite SQL Command
+        { get; set; }
+        public string SQL               // SQLite Standard Query Language command (SQL) to execute
+        { get; set; }
 
         //=============
         // Properties - SQLite Database Information
         //=============
-        public string DB_Name;  // The name of the database to use
-        public string DB_Path;  // The path associated with the database to use
+        public string DB_Name   // The name of the database to use
+        { get; set; }
+        public string DB_Path   // The path associated with the database to use
+        { get; set; }
 
         //=============
         // Properties - Database Size in Bytes

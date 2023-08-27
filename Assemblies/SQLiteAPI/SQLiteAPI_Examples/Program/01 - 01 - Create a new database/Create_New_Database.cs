@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using SQLiteAPI;	// SQLiteAPI
+//=============
+// From Orias LLC
+//=============
+using SQLiteAPI;
 
 //=============
 // Aliases

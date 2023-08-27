@@ -64,6 +64,9 @@
     <Compile Include="Administrative Tasks\Shrink.cs" />
     <Compile Include="Execute_Queries\ExecuteQuery.cs" />
     <Compile Include="Execute_Queries\ExecuteNonQuery.cs" />
+    <Compile Include="SQLiteAPI\Enumerations.cs" />
+    <Compile Include="SQLiteAPI\Properties.cs" />
+    <Compile Include="SQLiteAPI\SQLiteAPI.cs" />
     <Compile Include="Validate_Class\Validate_Connection_Information.cs" />
     <Compile Include="Validate_Class\Validate_Class.cs" />
     <Compile Include="Create_Connection_String.cs" />

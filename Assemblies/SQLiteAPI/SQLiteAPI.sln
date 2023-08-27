@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30611.23
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34009.444
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLiteAPI", "SQLiteAPI\SQLiteAPI.csproj", "{84CDAD06-5E8E-417C-9C45-5AA92E4FD335}"
 EndProject
@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Release Information", "Rele
 		..\..\README.md = ..\..\README.md
 		..\..\Working_On.txt = ..\..\Working_On.txt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLiteAPI_Testing", "SQLiteAPI_Testing\SQLiteAPI_Testing.csproj", "{8588497E-4770-4C03-8B1C-9595458F7A7B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{0358D047-9E89-46B2-9C86-CDCF0C5D0774}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0358D047-9E89-46B2-9C86-CDCF0C5D0774}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0358D047-9E89-46B2-9C86-CDCF0C5D0774}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8588497E-4770-4C03-8B1C-9595458F7A7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8588497E-4770-4C03-8B1C-9595458F7A7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8588497E-4770-4C03-8B1C-9595458F7A7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8588497E-4770-4C03-8B1C-9595458F7A7B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

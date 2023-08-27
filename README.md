@@ -11,6 +11,10 @@ Include the following dlls in your unity project.
 - System.Data.SQLite.dll
 - SQLite.Interop.dll
 
+The database will need to reside in the StreamingAssets folder under the Assets folder or it will not be included in the build.  Appropriate
+directory structures can used and will be retained under this folder.
+- The folder StreamingAssets is not created by default, it will need to be created.
+
 The syntax will be the same as shown in these examples.
 
 ## Pros
@@ -20,7 +24,7 @@ The database behaves like a large Relational Database without the additional ser
 ## Cons
 ### SQLite is a designed for single user on the same machine
 * The database used by an application is expected to be on the same machine as the calling application.  It is known to cause corruption with
-  the database if it is accessed by multiple connections, different operating systgems or resting on a network drive.
+  the database if it is accessed by multiple connections, different operating systems or resting on a network drive.
 
 * The connection string includes the full path to the database.  A Universal Naming Convention (UNC) path will not work.
 

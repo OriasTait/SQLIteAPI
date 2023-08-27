@@ -29,6 +29,7 @@ namespace SQLiteAPI
             DB_Current_Size = new FileInfo(DB_Path + DB_Name).Length;
 
             // No space left, raise error
+#pragma warning disable S2589 // Boolean expressions should not be gratuitous
             if (DB_Current_Size >= DB_Error_Min)
 			{
                 DB_Status = Status.Error;
@@ -48,6 +49,7 @@ namespace SQLiteAPI
                 DB_Status = Status.Warning;
                 Error_MSG = "WARNING: ";
             }
+#pragma warning restore S2589 // Boolean expressions should not be gratuitous
 
             if (DB_Status != Status.Valid)
 			{

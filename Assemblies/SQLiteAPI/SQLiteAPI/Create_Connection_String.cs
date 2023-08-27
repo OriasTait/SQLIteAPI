@@ -10,7 +10,9 @@ namespace SQLiteAPI
 {
     public partial class SQLite
     {
+#pragma warning disable S3241 // Methods should not return values that are never used
         private Status Create_Connection_String()
+#pragma warning restore S3241 // Methods should not return values that are never used
         /*
         ===============================================================================================
         PURPOSE:

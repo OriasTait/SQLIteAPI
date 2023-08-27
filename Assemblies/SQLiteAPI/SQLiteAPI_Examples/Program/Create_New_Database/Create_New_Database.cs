@@ -47,7 +47,7 @@ namespace SQLiteAPI_Examples
 				case Example.Administion:
 					Create_Database_05(ref SQLiteDB);
 					break;
-			} // switch (Program_Example)
+			} // switch Program_Example
 		} // public static void Create_New_Database(ref SQLite SQLiteDB, Example Program_Example)
 	} // partial class Program
 } // namespace SQLiteAPI_Examples

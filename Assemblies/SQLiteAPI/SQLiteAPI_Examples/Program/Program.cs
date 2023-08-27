@@ -81,31 +81,26 @@ namespace SQLiteAPI_Examples
 					case ConsoleKey.D1:
 						Create_New_Database();
 						break;
-						;
 
 					case ConsoleKey.NumPad2:
 					case ConsoleKey.D2:
 						Create_And_Populate_Tables();
 						break;
-						;
 
 					case ConsoleKey.NumPad3:
 					case ConsoleKey.D3:
 						Show_Data_From_A_Table();
 						break;
-						;
 
 					case ConsoleKey.NumPad4:
 					case ConsoleKey.D4:
 						Show_Advanced_Data_From_A_Table();
 						break;
-						;
 
 					case ConsoleKey.NumPad5:
 					case ConsoleKey.D5:
 						Administrative_Tasks();
 						break;
-						;
 
 					case ConsoleKey.Q:
 						ExitMainLoop = true;
