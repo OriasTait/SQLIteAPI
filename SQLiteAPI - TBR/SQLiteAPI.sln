@@ -9,8 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLiteAPI_Examples", "SQLit
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Release Information", "Release Information", "{93C0E0D2-7BBB-45CC-9873-2A60CA7D6F97}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\README.md = ..\..\README.md
-		..\..\Working_On.txt = ..\..\Working_On.txt
+		..\README.md = ..\README.md
+		..\Working_On.txt = ..\Working_On.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLiteAPI_Testing", "SQLiteAPI_Testing\SQLiteAPI_Testing.csproj", "{8588497E-4770-4C03-8B1C-9595458F7A7B}"

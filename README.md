@@ -3,6 +3,7 @@ Standardized processes, methods and routines for interfacing with a SQLite datab
 
 ## Notes for C#
 In order to use the SQLiteAPI, the following NuGet package must be installed for the project that uses this library:
+* system.data.sqlite
 * System.Data.SQLite.Core
 
 ## Notes for Unity
@@ -11,11 +12,9 @@ Include the following dlls in your unity project.
 - System.Data.SQLite.dll
 - SQLite.Interop.dll
 
-The database will need to reside in the StreamingAssets folder under the Assets folder or it will not be included in the build.  Appropriate
-directory structures can used and will be retained under this folder.
+The database will need to reside in the StreamingAssets folder under the Assets folder or it will not be included in
+the build.  Appropriate directory structures can used and will be retained under this folder.
 - The folder StreamingAssets is not created by default, it will need to be created.
-
-The syntax will be the same as shown in these examples.
 
 ## Pros
 ### SQL-like database without the overhead

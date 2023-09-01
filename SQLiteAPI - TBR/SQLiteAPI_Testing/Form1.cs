@@ -20,6 +20,8 @@ namespace SQLiteAPI_Testing
             InitializeComponent();
 
             Connection_Status.Text = Env.Database_Status;
+            DB_Directory.Text = Env.Database_Directory;
+            DB_Name.Text = Env.Database_Name;
         }
     }
 }

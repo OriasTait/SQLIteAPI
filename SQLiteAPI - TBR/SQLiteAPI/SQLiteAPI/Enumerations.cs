@@ -29,5 +29,14 @@ namespace SQLiteAPI
             DS,  // Data Source => uses standard OS path definitions (C:\Directory\SubDirectory\)
             URI  // Uniform Resource Identifier
         }
+
+        public enum Status
+        {
+            Valid,      // No Errors Encountered
+            Error,      // Encountered an error
+            Warning,    // Encountered a warning state
+            Critical    // Encountered a critical state
+        }
+
     } // public partial class SQLiteAPI
 } // namespace SQLiteAPI
