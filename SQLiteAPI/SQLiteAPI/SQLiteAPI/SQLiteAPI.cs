@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace SQLiteAPI
+namespace Orias_SQLiteAPI
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S101:Types should be named in PascalCase", Justification = "<Pending>")]
     public partial class SQLiteAPI
@@ -22,5 +22,26 @@ namespace SQLiteAPI
     ===============================================================================================
     */
     {
+        public SQLiteAPI()
+        /*
+        ===============================================================================================
+        PURPOSE:
+        Constructor for the SQLite API to set default values.
+        ===============================================================================================
+        */
+        {
+            // Start with a disonnected state
+            Connection_State = ConnectionState.Disconnected;
+        } // public SQLiteAPI
+        
+        ~SQLiteAPI()
+        /*
+        ===============================================================================================
+        PURPOSE:
+        Destructor for the SQLite API to cleanup the environment.
+        ===============================================================================================
+        */
+        {
+        } // ~SQLiteAPI
     } // public partial class SQLiteAPI
 } // namespace SQLiteAPI

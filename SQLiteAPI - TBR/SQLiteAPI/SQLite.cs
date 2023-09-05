@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;          // System data objects and routines
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//=============
+// NuGet Packages
+//=============
+using System.Data;          // System data objects and routines
 using System.Data.SQLite;   // NuGet Package => System.Data.SQLite
 
 namespace SQLiteAPI

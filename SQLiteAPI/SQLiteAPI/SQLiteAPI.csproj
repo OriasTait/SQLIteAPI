@@ -79,6 +79,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Validate Class\Validate_Class.cs" />
+    <Compile Include="Validate Class\Validate_Connection_Information.cs" />
+    <Compile Include="Create_DB\Create_Connection_String.cs" />
+    <Compile Include="Create_DB\Create_DB.cs" />
     <Compile Include="SQLiteAPI\Enumerations.cs" />
     <Compile Include="SQLiteAPI\Properties.cs" />
     <Compile Include="SQLiteAPI\SQLiteAPI.cs" />
@@ -88,6 +92,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

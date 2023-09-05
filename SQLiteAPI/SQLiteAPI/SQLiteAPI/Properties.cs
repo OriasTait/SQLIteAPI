@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Data.SQLite;   // NuGet Package => System.Data.SQLite
 
 
-namespace SQLiteAPI
+namespace Orias_SQLiteAPI
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S101:Types should be named in PascalCase", Justification = "<Pending>")]
     public partial class SQLiteAPI
@@ -20,23 +20,41 @@ namespace SQLiteAPI
     */
     {
         //=============
-        // Properties - SQLite Connection Information
+        // SQLite Connection Information
         //=============
         public ConnectionState Connection_State
         { get; set; }
 
         //=============
-        // Properties - SQLite Command Information
+        // SQLite Command Information
         //=============
-        public Status DB_Status         // The current status of the database
+        public ProcessStatus Process_Status // The status of the last process performed
         { get; set; }
-        public string Error_MSG         // Current Error message
+        public string Error_MSG             // Current Error message
         { get; set; }
-        public DataSet QueryResults     // Results of a query of the database
+        public DataSet QueryResults         // Results of a query in the database
         { get; set; }
-        private SQLiteCommand SQL_CMD   // SQLite SQL Command
+        public string SQL                   // SQLite Standard Query Language command (SQL) to process
         { get; set; }
-        public string SQL               // SQLite Standard Query Language command (SQL) to execute
+        private SQLiteCommand SQL_CMD       // SQLite SQL Command to process in the database
         { get; set; }
+
+        //=============
+        // Properties - SQLite Connection Information
+        //=============
+        private SQLiteConnection conn;      // SQLite Connection
+        public ConnectionType DB_Conn       // Database Connection Type
+        { get; set; }
+        private string Connection_String    // Connection String
+        { get; set; }
+
+        //=============
+        // SQLite Database Information
+        //=============
+        public string DB_Name   // The name of the database to use
+        { get; set; }
+        public string DB_Path   // The path associated with the database to use
+        { get; set; }
+
     } // public partial class SQLiteAPI
-} // namespace SQLiteAPI
+} // namespace Orias_SQLiteAPI

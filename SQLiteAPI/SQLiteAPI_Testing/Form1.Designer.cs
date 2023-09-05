@@ -33,15 +33,16 @@
             this.Connection_Status = new System.Windows.Forms.Label();
             this.Label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.BTN_Create_EmptyDB = new System.Windows.Forms.Button();
-            this.DB_Name = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.DB_Directory = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.TAB_EmptyDB = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.DB_Name = new System.Windows.Forms.Label();
+            this.BTN_Create_EmptyDB = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.DB_Directory = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.Process_Error = new System.Windows.Forms.Label();
             this.Group_Box_DB_Status.SuspendLayout();
             this.Group_Box_Panel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -63,6 +64,7 @@
             // Group_Box_Panel
             // 
             this.Group_Box_Panel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Group_Box_Panel.Controls.Add(this.Process_Error);
             this.Group_Box_Panel.Controls.Add(this.Connection_Status);
             this.Group_Box_Panel.Controls.Add(this.Label1);
             this.Group_Box_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -100,51 +102,6 @@
             this.panel1.Size = new System.Drawing.Size(800, 450);
             this.panel1.TabIndex = 1;
             // 
-            // BTN_Create_EmptyDB
-            // 
-            this.BTN_Create_EmptyDB.Location = new System.Drawing.Point(7, 3);
-            this.BTN_Create_EmptyDB.Name = "BTN_Create_EmptyDB";
-            this.BTN_Create_EmptyDB.Size = new System.Drawing.Size(136, 23);
-            this.BTN_Create_EmptyDB.TabIndex = 4;
-            this.BTN_Create_EmptyDB.Text = "Create Empty Database";
-            this.BTN_Create_EmptyDB.UseVisualStyleBackColor = true;
-            // 
-            // DB_Name
-            // 
-            this.DB_Name.AutoSize = true;
-            this.DB_Name.Location = new System.Drawing.Point(63, 51);
-            this.DB_Name.Name = "DB_Name";
-            this.DB_Name.Size = new System.Drawing.Size(35, 13);
-            this.DB_Name.TabIndex = 3;
-            this.DB_Name.Text = "label4";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 51);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Database:";
-            // 
-            // DB_Directory
-            // 
-            this.DB_Directory.AutoSize = true;
-            this.DB_Directory.Location = new System.Drawing.Point(63, 29);
-            this.DB_Directory.Name = "DB_Directory";
-            this.DB_Directory.Size = new System.Drawing.Size(35, 13);
-            this.DB_Directory.TabIndex = 1;
-            this.DB_Directory.Text = "label3";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 29);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Directory:";
-            // 
             // TAB_EmptyDB
             // 
             this.TAB_EmptyDB.Controls.Add(this.tabPage1);
@@ -166,16 +123,6 @@
             this.tabPage1.Text = "EmptyDB";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(773, 74);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -189,6 +136,72 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(773, 72);
             this.panel3.TabIndex = 0;
+            // 
+            // DB_Name
+            // 
+            this.DB_Name.AutoSize = true;
+            this.DB_Name.Location = new System.Drawing.Point(63, 51);
+            this.DB_Name.Name = "DB_Name";
+            this.DB_Name.Size = new System.Drawing.Size(35, 13);
+            this.DB_Name.TabIndex = 3;
+            this.DB_Name.Text = "label4";
+            // 
+            // BTN_Create_EmptyDB
+            // 
+            this.BTN_Create_EmptyDB.Location = new System.Drawing.Point(7, 3);
+            this.BTN_Create_EmptyDB.Name = "BTN_Create_EmptyDB";
+            this.BTN_Create_EmptyDB.Size = new System.Drawing.Size(136, 23);
+            this.BTN_Create_EmptyDB.TabIndex = 4;
+            this.BTN_Create_EmptyDB.Text = "Create New Database";
+            this.BTN_Create_EmptyDB.UseVisualStyleBackColor = true;
+            this.BTN_Create_EmptyDB.Click += new System.EventHandler(this.BTN_Create_EmptyDB_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(4, 51);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(56, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Database:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(4, 29);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(52, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Directory:";
+            // 
+            // DB_Directory
+            // 
+            this.DB_Directory.AutoSize = true;
+            this.DB_Directory.Location = new System.Drawing.Point(63, 29);
+            this.DB_Directory.Name = "DB_Directory";
+            this.DB_Directory.Size = new System.Drawing.Size(35, 13);
+            this.DB_Directory.TabIndex = 1;
+            this.DB_Directory.Text = "label3";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(779, 78);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // Process_Error
+            // 
+            this.Process_Error.AutoSize = true;
+            this.Process_Error.ForeColor = System.Drawing.Color.Red;
+            this.Process_Error.Location = new System.Drawing.Point(4, 27);
+            this.Process_Error.Name = "Process_Error";
+            this.Process_Error.Size = new System.Drawing.Size(70, 13);
+            this.Process_Error.TabIndex = 2;
+            this.Process_Error.Text = "Process Error";
             // 
             // Form1
             // 
@@ -227,6 +240,7 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label Process_Error;
     }
 }
 
