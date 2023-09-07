@@ -51,9 +51,11 @@ namespace Orias_SQLiteAPI
         //=============
         // SQLite Database Information
         //=============
-        public string DB_Name   // The name of the database to use
+        public string DB_Name       // The name of the database to use
         { get; set; }
-        public string DB_Path   // The path associated with the database to use
+        public string DB_Path       // The path associated with the database to use
+        { get; set; }
+        public string Full_DB_Path  // The full path associated with the database to use
         { get; set; }
 
     } // public partial class SQLiteAPI

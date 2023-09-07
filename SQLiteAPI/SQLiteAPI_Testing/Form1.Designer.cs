@@ -30,6 +30,7 @@
         {
             this.Group_Box_DB_Status = new System.Windows.Forms.GroupBox();
             this.Group_Box_Panel = new System.Windows.Forms.Panel();
+            this.Process_Error = new System.Windows.Forms.Label();
             this.Connection_Status = new System.Windows.Forms.Label();
             this.Label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -42,7 +43,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.DB_Directory = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.Process_Error = new System.Windows.Forms.Label();
             this.Group_Box_DB_Status.SuspendLayout();
             this.Group_Box_Panel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -73,10 +73,20 @@
             this.Group_Box_Panel.Size = new System.Drawing.Size(784, 105);
             this.Group_Box_Panel.TabIndex = 2;
             // 
+            // Process_Error
+            // 
+            this.Process_Error.AutoSize = true;
+            this.Process_Error.ForeColor = System.Drawing.Color.Red;
+            this.Process_Error.Location = new System.Drawing.Point(4, 27);
+            this.Process_Error.Name = "Process_Error";
+            this.Process_Error.Size = new System.Drawing.Size(70, 13);
+            this.Process_Error.TabIndex = 2;
+            this.Process_Error.Text = "Process Error";
+            // 
             // Connection_Status
             // 
             this.Connection_Status.AutoSize = true;
-            this.Connection_Status.Location = new System.Drawing.Point(115, 4);
+            this.Connection_Status.Location = new System.Drawing.Point(88, 4);
             this.Connection_Status.Name = "Connection_Status";
             this.Connection_Status.Size = new System.Drawing.Size(35, 13);
             this.Connection_Status.TabIndex = 1;
@@ -87,9 +97,9 @@
             this.Label1.AutoSize = true;
             this.Label1.Location = new System.Drawing.Point(4, 4);
             this.Label1.Name = "Label1";
-            this.Label1.Size = new System.Drawing.Size(113, 13);
+            this.Label1.Size = new System.Drawing.Size(78, 13);
             this.Label1.TabIndex = 0;
-            this.Label1.Text = "Database Connection:";
+            this.Label1.Text = "Process Status";
             // 
             // panel1
             // 
@@ -192,16 +202,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // Process_Error
-            // 
-            this.Process_Error.AutoSize = true;
-            this.Process_Error.ForeColor = System.Drawing.Color.Red;
-            this.Process_Error.Location = new System.Drawing.Point(4, 27);
-            this.Process_Error.Name = "Process_Error";
-            this.Process_Error.Size = new System.Drawing.Size(70, 13);
-            this.Process_Error.TabIndex = 2;
-            this.Process_Error.Text = "Process Error";
             // 
             // Form1
             // 

@@ -53,11 +53,15 @@ namespace SQLiteAPI_Testing
             //=============
             // Body
             //=============
-            Results = My_DB.Create_DB(SQLiteAPI.DatabaseCreateType.Retain);
+            Results = My_DB.Create_DB(SQLiteAPI.DatabaseCreateType.Overwrite);
 
             if (Results != SQLiteAPI.ProcessStatus.Valid)
             {
                 Process_Error.Text = My_DB.Error_MSG;
+            }
+            else
+            {
+                Connection_Status.Text = "Database Created";
             }
         }
     } // public partial class Form1 : Form

@@ -78,6 +78,12 @@ namespace Orias_SQLiteAPI
                 }
             }
 
+            // Save the full path if we are still valid
+            if (Results == ProcessStatus.Valid)
+            {
+                Full_DB_Path = DB_Path + DB_Name;
+            }
+
             //=============
             // Cleanup Environment
             //=============

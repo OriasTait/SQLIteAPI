@@ -1,7 +1,7 @@
 # SQLiteAPI
 Standardized processes, methods and routines for interfacing with a SQLite database.
 
-## Notes for C#
+## Notes for C# in Visual Studio
 In order to use the SQLiteAPI, the following NuGet package must be installed for the project that uses this library:
 * system.data.sqlite
 * System.Data.SQLite.Core

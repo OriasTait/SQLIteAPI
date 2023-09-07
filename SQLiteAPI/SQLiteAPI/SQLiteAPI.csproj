@@ -79,6 +79,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Create_DB\Create_The_Database.cs" />
     <Compile Include="Validate Class\Validate_Class.cs" />
     <Compile Include="Validate Class\Validate_Connection_Information.cs" />
     <Compile Include="Create_DB\Create_Connection_String.cs" />

@@ -1,27 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SQLite;   // NuGet Package => System.Data.SQLite
+using System.IO;            // file system class
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace Orias_SQLiteAPI
 {
     public partial class SQLiteAPI
     {
-        private bool Database_Exists()
-        /*
-        ===============================================================================================
-        PURPOSE:
-        Check if the database provided to the SQLiteAPI exists.
-        -----------------------------------------------------------------------------------------------
-        OUTPUT:
-        - Returns true if it does; othewise it returns false.
-        ===============================================================================================
-        */
-        {
-
-        } // private bool Database_Exists
-
         public ProcessStatus Create_DB(DatabaseCreateType Create_Type)
         /*
         ===============================================================================================
@@ -54,17 +43,23 @@ namespace Orias_SQLiteAPI
                 switch (Create_Type)
                 {
                     case DatabaseCreateType.Retain:
-                        // If Retain
-                        // - Check if database exists
-                        // - Raise error if exists
-                        // - Else Create the database
+                        if (File.Exists(Full_DB_Path))
+                        {
+                            Process_Status = ProcessStatus.Error;
+                            Error_MSG = @"The Database already exists";
+                        }
+                        else
+                        {
+                            Create_The_Database();
+                        }
                         break;
 
                     case DatabaseCreateType.Overwrite:
-                        // If Overwrite
-                        // - Check if database exists
-                        // - Remove database if exists
-                        // - Create the database
+                        if (File.Exists(Full_DB_Path))
+                        {
+                            File.Delete(Full_DB_Path);
+                            Create_The_Database();
+                        }
                         break;
                 }
             } // if Results == ProcessStatus.Valid
@@ -72,6 +67,7 @@ namespace Orias_SQLiteAPI
             //=============
             // Cleanup Environment
             //=============
+            Results = Process_Status;
             return Results;
         } // public ProcessStatus Create_DB
     } // public partial class SQLiteAPI

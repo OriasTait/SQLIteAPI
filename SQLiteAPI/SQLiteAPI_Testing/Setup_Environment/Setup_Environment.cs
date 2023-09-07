@@ -15,8 +15,8 @@ namespace SQLiteAPI_Testing
 #pragma warning restore S1118 // Utility classes should not have public constructors
         {
             // These values are hard coded, but could be programatically generated.
-            public const string Database_Status = "Not Connected";
-            public const string Database_Directory = @"D:\Work\Code\Orias_OSC\SQLIteAPI\Working_Dir\";
+            public const string Database_Status = "";
+            public const string Database_Directory = @"D:\Work\Code\Orias_OSC\SQLIteAPI\Working_Dir";
             public const string Database_Name = "Empty_Database.db";
         } // internal class Env
     } // namespace Environment
