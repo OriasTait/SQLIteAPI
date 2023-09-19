@@ -55,7 +55,7 @@ namespace Orias_SQLiteAPI
 
                     default:
                         // Add appropriate message separator
-                        if (Results == ProcessStatus.Error)
+                        if(Error_MSG.Length >  0)
                         { Error_MSG += "; "; }
 
                         // Add appropriate error message
