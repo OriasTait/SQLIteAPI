@@ -32,14 +32,20 @@ The database behaves like a large Relational Database without the additional ser
   In order to minimize the complexity of this solution, the 3rd party tools that can be encorporated for this functionality are not
   being used.
 
-=============
-
 # The API
 
 ## SQLite Enumerations
+* ConnectionState
+  * Connected    => Connected to a database
+  * Disconnected => Not connected to a database
+
 * ConnectionType
   * DS	=> Data Source => Uses standard OS path definitions (C:\Directory\SubDirectory\ )
   * URI	=> Uniform Resource Identifier (Application.dataPath + "/Plugins/SQLite_DBs/")
+
+* DatabaseCreateType
+  * Overwrite => Overwrite the database if it exists
+  * Retain	  => Do not Overwrite the database if it exists
 
 * Status
   * Critical    => Encountered a critical state
@@ -47,32 +53,68 @@ The database behaves like a large Relational Database without the additional ser
   * Valid		=> No Errors Encountered
   * Warning		=> Encountered a warning state
 
-## SQLite Properties
-* DB_Conn		=> Database Connection Type
+* Validation_Type
+  * DB_Connection => Database Connection
+
+## SQLite Properties - SQLite Command Information
+* Error_MSG      => Current Error message
+* Process_Status => The status of the last process performed
+* QueryResults   => Results of a query in the database
+* SQL            => SQLite Standard Query Language command (SQL) to process
+* SQL_CMD        => SQLite SQL Command to process in the database
+
+## SQLite Properties - SQLite Connection Information
+* Connection_State => Current Connection State
+* DB_Conn          => Database Connection Type
+
+## SQLite Properties - SQLite Database Information
 * DB_Name       => The name of the database to use
 * DB_Path       => The path associated with the database to use
-* DB_Status		=> The current status of the database
-* Error_MSG     => Current Error message
-* QueryResults  => Results of a query of the database.
-* SQL			=> SQLite Standard Query Language (SQL) command to execute
+* Full_DB_Path  => The full path associated with the database to use
 
 ## SQLite Methods
 These are the standardized methods to be called for interfacing with SQLite.
 
 ### Create_DB
-Create a database based on the API and if it should overwrite it or not.
+PURPOSE:
+Create a database based on the information provided in the SQLiteAPI class.
 
-### ExecuteNonQuery
-Attempt to execute the command in the property SQL against the database identified with the ConnectionString.
+PARAMETERS:
+- Create_Type => If the database should be overwritten or not.
+
+OUTPUT:
+- An empty database will be created.
 
 NOTES:
-* This assumes no results are being returned by the command being executed.
+- If Create_Type is set to Retain and the the database already exists, an error will be raised.
+
+### ExecuteNonQuery
+PURPOSE:
+Execute the SQL command against the SQLite database.
+
+OUTPUT:
+- If successful, the command has been executed; otherwise, the database state has been updated 
+  to Error and the error message has been updated.
+
+NOTES:
+- It is assumed no results are being returned by the command being executed.
+
+* =============
+
+# The API
+
+## SQLite Methods
+These are the standardized methods to be called for interfacing with SQLite.
 
 ### ExecuteQuery
 Execute the SQL in the property CommandText to the database connected to in the Initialize method.
 
 NOTES:
 * This assumes there will be a result set returned by the SQL and places it in the property QueryResults.
+* If multiple queries are passed, each result set is saved in a table data object within the propery QueryResults.
+
+=============
+=============
 
 ### Shrink
 Re-organize the database to use the minimal amount of disk space.
@@ -80,4 +122,4 @@ Re-organize the database to use the minimal amount of disk space.
 =============
 
 #How to compile
-This was created in Microsoft Visual Studio Community 2019.  Open the file SQLiteAPI.sln in Visual Studio and compile the project.
+This was created in Microsoft Visual Studio Community 2022.  Open the file SQLiteAPI.sln in Visual Studio and compile the project.

@@ -9,6 +9,12 @@ using System.Windows.Forms;
 namespace SQLiteAPI_Testing
 {
     namespace Environment
+    /*
+    ===============================================================================================
+    PURPOSE:
+    Centralize the information about the running environment
+    ===============================================================================================
+    */
     {
 #pragma warning disable S1118 // Utility classes should not have public constructors
         internal class Env

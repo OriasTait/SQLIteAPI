@@ -78,10 +78,19 @@ namespace Orias_SQLiteAPI
                 }
             }
 
-            // Save the full path if we are still valid
+            // If we are still valid
             if (Results == ProcessStatus.Valid)
             {
+                // Save the full path if we are still valid
                 Full_DB_Path = DB_Path + DB_Name;
+
+                // Indicate we are connected
+                Connection_State = ConnectionState.Connected;
+            }
+            else
+            {
+                // Indicate we are not connected
+                Connection_State = ConnectionState.Disconnected;
             }
 
             //=============

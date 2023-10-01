@@ -20,12 +20,6 @@ namespace Orias_SQLiteAPI
     */
     {
         //=============
-        // SQLite Connection Information
-        //=============
-        public ConnectionState Connection_State
-        { get; set; }
-
-        //=============
         // SQLite Command Information
         //=============
         public ProcessStatus Process_Status // The status of the last process performed
@@ -40,9 +34,11 @@ namespace Orias_SQLiteAPI
         { get; set; }
 
         //=============
-        // Properties - SQLite Connection Information
+        // SQLite Connection Information
         //=============
         private SQLiteConnection conn;      // SQLite Connection
+        public ConnectionState Connection_State  // Current Connection State
+        { get; set; }
         public ConnectionType DB_Conn       // Database Connection Type
         { get; set; }
         private string Connection_String    // Connection String

@@ -30,23 +30,28 @@
         {
             this.Group_Box_DB_Status = new System.Windows.Forms.GroupBox();
             this.Group_Box_Panel = new System.Windows.Forms.Panel();
+            this.DB_Name = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.DB_Directory = new System.Windows.Forms.Label();
             this.Process_Error = new System.Windows.Forms.Label();
             this.Connection_Status = new System.Windows.Forms.Label();
             this.Label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label4 = new System.Windows.Forms.Label();
             this.TAB_EmptyDB = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
             this.BTN_Create_EmptyDB = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.BTN_Show_Data = new System.Windows.Forms.Button();
             this.BTN_Table_Create_and_Populate = new System.Windows.Forms.Button();
-            this.DB_Name = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.DB_Directory = new System.Windows.Forms.Label();
+            this.BTN_Show_Data2 = new System.Windows.Forms.Button();
             this.Group_Box_DB_Status.SuspendLayout();
             this.Group_Box_Panel.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.TAB_EmptyDB.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -79,6 +84,42 @@
             this.Group_Box_Panel.Size = new System.Drawing.Size(784, 105);
             this.Group_Box_Panel.TabIndex = 2;
             // 
+            // DB_Name
+            // 
+            this.DB_Name.AutoSize = true;
+            this.DB_Name.Location = new System.Drawing.Point(69, 34);
+            this.DB_Name.Name = "DB_Name";
+            this.DB_Name.Size = new System.Drawing.Size(35, 13);
+            this.DB_Name.TabIndex = 7;
+            this.DB_Name.Text = "label4";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 34);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(56, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Database:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 11);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(52, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Directory:";
+            // 
+            // DB_Directory
+            // 
+            this.DB_Directory.AutoSize = true;
+            this.DB_Directory.Location = new System.Drawing.Point(69, 11);
+            this.DB_Directory.Name = "DB_Directory";
+            this.DB_Directory.Size = new System.Drawing.Size(35, 13);
+            this.DB_Directory.TabIndex = 5;
+            this.DB_Directory.Text = "label3";
+            // 
             // Process_Error
             // 
             this.Process_Error.AutoSize = true;
@@ -110,6 +151,8 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.TAB_EmptyDB);
             this.panel1.Controls.Add(this.Group_Box_DB_Status);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -117,6 +160,26 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 450);
             this.panel1.TabIndex = 1;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(9, 138);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(779, 175);
+            this.dataGridView1.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 121);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(118, 13);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Data from the database";
             // 
             // TAB_EmptyDB
             // 
@@ -161,6 +224,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.BTN_Show_Data2);
+            this.tabPage2.Controls.Add(this.BTN_Show_Data);
             this.tabPage2.Controls.Add(this.BTN_Table_Create_and_Populate);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
@@ -169,6 +234,16 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tables";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // BTN_Show_Data
+            // 
+            this.BTN_Show_Data.Location = new System.Drawing.Point(7, 36);
+            this.BTN_Show_Data.Name = "BTN_Show_Data";
+            this.BTN_Show_Data.Size = new System.Drawing.Size(121, 23);
+            this.BTN_Show_Data.TabIndex = 6;
+            this.BTN_Show_Data.Text = "Show data in Table1";
+            this.BTN_Show_Data.UseVisualStyleBackColor = true;
+            this.BTN_Show_Data.Click += new System.EventHandler(this.BTN_Show_Data_Click);
             // 
             // BTN_Table_Create_and_Populate
             // 
@@ -180,41 +255,15 @@
             this.BTN_Table_Create_and_Populate.UseVisualStyleBackColor = true;
             this.BTN_Table_Create_and_Populate.Click += new System.EventHandler(this.BTN_Table_Create_and_Populate_Click);
             // 
-            // DB_Name
+            // BTN_Show_Data2
             // 
-            this.DB_Name.AutoSize = true;
-            this.DB_Name.Location = new System.Drawing.Point(69, 34);
-            this.DB_Name.Name = "DB_Name";
-            this.DB_Name.Size = new System.Drawing.Size(35, 13);
-            this.DB_Name.TabIndex = 7;
-            this.DB_Name.Text = "label4";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 34);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Database:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 11);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Directory:";
-            // 
-            // DB_Directory
-            // 
-            this.DB_Directory.AutoSize = true;
-            this.DB_Directory.Location = new System.Drawing.Point(69, 11);
-            this.DB_Directory.Name = "DB_Directory";
-            this.DB_Directory.Size = new System.Drawing.Size(35, 13);
-            this.DB_Directory.TabIndex = 5;
-            this.DB_Directory.Text = "label3";
+            this.BTN_Show_Data2.Location = new System.Drawing.Point(134, 36);
+            this.BTN_Show_Data2.Name = "BTN_Show_Data2";
+            this.BTN_Show_Data2.Size = new System.Drawing.Size(126, 23);
+            this.BTN_Show_Data2.TabIndex = 7;
+            this.BTN_Show_Data2.Text = "Show data in Table2";
+            this.BTN_Show_Data2.UseVisualStyleBackColor = true;
+            this.BTN_Show_Data2.Click += new System.EventHandler(this.BTN_Show_Data2_Click);
             // 
             // Form1
             // 
@@ -229,6 +278,8 @@
             this.Group_Box_Panel.ResumeLayout(false);
             this.Group_Box_Panel.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.TAB_EmptyDB.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -255,6 +306,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label DB_Directory;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button BTN_Show_Data;
+        private System.Windows.Forms.Button BTN_Show_Data2;
     }
 }
 

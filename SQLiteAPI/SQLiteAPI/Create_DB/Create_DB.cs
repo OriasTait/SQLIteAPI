@@ -45,8 +45,21 @@ namespace Orias_SQLiteAPI
                     case DatabaseCreateType.Retain:
                         if (File.Exists(Full_DB_Path))
                         {
-                            Process_Status = ProcessStatus.Error;
-                            Error_MSG = @"The Database already exists";
+                            try
+                            {
+                                conn = new SQLiteConnection(Connection_String);  // Create a connection to the database
+                                conn.Open();  // Open the connection
+                                conn.Close(); // Close the connection
+                            }
+                            catch (Exception ex) // Error creating the database
+                            {
+                                Process_Status = ProcessStatus.Error;
+                                Error_MSG =
+                                    "Create the database "
+                                    + DB_Name
+                                    + " returned the error: "
+                                    + ex.Message.Replace("\r\n", " ");  // Convert the message to one line
+                            }
                         }
                         else
                         {

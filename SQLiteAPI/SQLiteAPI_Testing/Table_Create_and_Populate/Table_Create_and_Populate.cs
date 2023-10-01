@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+//=============
+// Orias Packages
+//=============
 using static Orias_SQLiteAPI.SQLiteAPI;
 
 namespace SQLiteAPI_Testing
@@ -15,11 +19,24 @@ namespace SQLiteAPI_Testing
 #pragma warning restore S101 // Types should be named in PascalCase
         {
             public ProcessStatus Create_Table_and_Populate(ref SQLiteAPI My_DB)
+            /*
+            ===============================================================================================
+            PURPOSE:
+            Provide an example of creating 2 tables and populating them with data.
+            -----------------------------------------------------------------------------------------------
+            NOTES:
+            - Because this leverages the SQLiteAPI, the NuGet package System.Data.SQLite.Core has been
+              included.
+            ===============================================================================================
+            */
             {
+                //=============
+                // Variables - Standard
+                //=============
                 ProcessStatus Results;
 
                 //=============
-                // If Table 1 exeists, drop it
+                // If Table1 exeists, drop it
                 //=============
                 My_DB.SQL = "DROP TABLE IF EXISTS Table1;";
                 My_DB.ExecuteNonQuery();
@@ -85,8 +102,13 @@ namespace SQLiteAPI_Testing
                     My_DB.ExecuteNonQuery();
                 }
 
+                //=============
+                // Cleanup Environment
+                //=============
+                // Obtain the status of the process
                 Results = My_DB.Process_Status;
 
+                // Return the status to the calling process
                 return Results;
             } // public void Create_Table_and_Populate
         } // internal class Table_Create_and_Populate
