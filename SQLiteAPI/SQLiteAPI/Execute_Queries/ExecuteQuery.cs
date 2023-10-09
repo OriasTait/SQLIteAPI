@@ -46,6 +46,9 @@ namespace Orias_SQLiteAPI
                     Create_Connection_String();
                 }
 
+                // Create a connection to the database
+                conn = new SQLiteConnection(Connection_String);
+
                 // Create the SQL Command to Execute
                 SQL_CMD = conn.CreateCommand();
                 SQL_CMD.CommandText = SQL;
@@ -74,7 +77,7 @@ namespace Orias_SQLiteAPI
             //=============
             // Cleanup Environment
             //=============
-            finally  // Close the database connection
+            finally  // Always do this, even if there is an error
             {
                 conn.Close();       // Close the connection the database
                 SQL_CMD.Dispose();  // Remove the command from memory

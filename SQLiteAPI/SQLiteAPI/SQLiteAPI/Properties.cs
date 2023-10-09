@@ -54,5 +54,10 @@ namespace Orias_SQLiteAPI
         public string Full_DB_Path  // The full path associated with the database to use
         { get; set; }
 
+        //=============
+        // SQLite Database Size in Bytes
+        //=============
+        public long DB_Current_Size    // The current size of the database
+        { get; set; }
     } // public partial class SQLiteAPI
 } // namespace Orias_SQLiteAPI

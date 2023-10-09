@@ -79,6 +79,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administrative\Current_Size.cs" />
+    <Compile Include="Administrative\Shrink.cs" />
     <Compile Include="Create_DB\Create_The_Database.cs" />
     <Compile Include="Execute_Queries\ExecuteQuery.cs" />
     <Compile Include="Execute_Queries\ExecuteNonQuery.cs" />

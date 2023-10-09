@@ -106,6 +106,9 @@ NOTES:
 ## SQLite Methods
 These are the standardized methods to be called for interfacing with SQLite.
 
+### Current_Size
+Obtain the current size of the database.
+
 ### ExecuteQuery
 Execute the SQL in the property CommandText to the database connected to in the Initialize method.
 
@@ -113,13 +116,12 @@ NOTES:
 * This assumes there will be a result set returned by the SQL and places it in the property QueryResults.
 * If multiple queries are passed, each result set is saved in a table data object within the propery QueryResults.
 
-=============
-=============
+### ExecuteNonQuery
+Execute the SQL command against the SQLite database.
+* It is assumed no results are being returned by the command being executed.
 
 ### Shrink
 Re-organize the database to use the minimal amount of disk space.
-
-=============
 
 #How to compile
 This was created in Microsoft Visual Studio Community 2022.  Open the file SQLiteAPI.sln in Visual Studio and compile the project.

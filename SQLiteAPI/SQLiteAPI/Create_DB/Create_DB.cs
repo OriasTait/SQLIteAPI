@@ -47,15 +47,21 @@ namespace Orias_SQLiteAPI
                         {
                             try
                             {
-                                conn = new SQLiteConnection(Connection_String);  // Create a connection to the database
-                                conn.Open();  // Open the connection
-                                conn.Close(); // Close the connection
+                                // Create a connection to the database
+                                conn = new SQLiteConnection(Connection_String);
+
+                                // Open the connection
+                                conn.Open();
+
+                                // Close the connection
+                                conn.Close();
                             }
+
                             catch (Exception ex) // Error creating the database
                             {
                                 Process_Status = ProcessStatus.Error;
                                 Error_MSG =
-                                    "Create the database "
+                                    "Opening the database "
                                     + DB_Name
                                     + " returned the error: "
                                     + ex.Message.Replace("\r\n", " ");  // Convert the message to one line
@@ -70,11 +76,27 @@ namespace Orias_SQLiteAPI
                     case DatabaseCreateType.Overwrite:
                         if (File.Exists(Full_DB_Path))
                         {
+                            // Remove the existing database
                             File.Delete(Full_DB_Path);
+                        }
+
+                        try
+                        {
+                            // Create a new database
                             Create_The_Database();
                         }
+
+                        catch (Exception ex) // Error creating the database
+                        {
+                            Process_Status = ProcessStatus.Error;
+                            Error_MSG =
+                                "Creating the database "
+                                + DB_Name
+                                + " returned the error: "
+                                + ex.Message.Replace("\r\n", " ");  // Convert the message to one line
+                        }
                         break;
-                }
+                } // switch Create_Type
             } // if Results == ProcessStatus.Valid
 
             //=============

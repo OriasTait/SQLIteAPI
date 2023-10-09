@@ -177,9 +177,6 @@ namespace SQLiteAPI_Testing
         -----------------------------------------------------------------------------------------------
         OUTPUT:
         - The data in table 1 will be displayed
-        -----------------------------------------------------------------------------------------------
-        NOTES:
-        - 
         ===============================================================================================
         */
         {
@@ -232,9 +229,6 @@ namespace SQLiteAPI_Testing
         -----------------------------------------------------------------------------------------------
         OUTPUT:
         - The data in table 1 will be displayed
-        -----------------------------------------------------------------------------------------------
-        NOTES:
-        - 
         ===============================================================================================
         */
         {
@@ -274,5 +268,38 @@ namespace SQLiteAPI_Testing
                 dataGridView1.DataSource = My_DB.QueryResults.Tables[0];
             }
         } // private void BTN_Show_Data2_Click
+
+        private void BTN_ShrinkDB_Click(object sender, EventArgs e)
+        /*
+        ===============================================================================================
+        PURPOSE:
+        Release extra space used by the database back to the OS.
+        -----------------------------------------------------------------------------------------------
+        PARAMETERS:
+        - Sender    => The handle to the form calling method
+        - e         => Arguments passed to from the caller
+        -----------------------------------------------------------------------------------------------
+        OUTPUT:
+        - The database will be re-organized, releasing unused space.
+        ===============================================================================================
+        */
+        {
+            // Create an instance to connect to the database
+            SQLiteAPI My_DB = new SQLiteAPI()
+            {
+                DB_Name = "Table_Database.db",
+                DB_Path = Env.Database_Directory
+            };
+
+            // Release unused space
+            My_DB.Shrink();
+
+            // Show the current database size
+            My_DB.Current_Size();
+            Process_Error.Text = 
+                "New Database Size " + 
+                My_DB.DB_Current_Size +
+                " kb";
+        }
     } // public partial class Form1 : Form
 } // namespace SQLiteAPI_Testing

@@ -45,9 +45,11 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.BTN_Create_EmptyDB = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.BTN_Show_Data2 = new System.Windows.Forms.Button();
             this.BTN_Show_Data = new System.Windows.Forms.Button();
             this.BTN_Table_Create_and_Populate = new System.Windows.Forms.Button();
-            this.BTN_Show_Data2 = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.BTN_ShrinkDB = new System.Windows.Forms.Button();
             this.Group_Box_DB_Status.SuspendLayout();
             this.Group_Box_Panel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -56,6 +58,7 @@
             this.tabPage1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // Group_Box_DB_Status
@@ -185,6 +188,7 @@
             // 
             this.TAB_EmptyDB.Controls.Add(this.tabPage1);
             this.TAB_EmptyDB.Controls.Add(this.tabPage2);
+            this.TAB_EmptyDB.Controls.Add(this.tabPage3);
             this.TAB_EmptyDB.Location = new System.Drawing.Point(5, 10);
             this.TAB_EmptyDB.Name = "TAB_EmptyDB";
             this.TAB_EmptyDB.SelectedIndex = 0;
@@ -214,7 +218,7 @@
             // 
             // BTN_Create_EmptyDB
             // 
-            this.BTN_Create_EmptyDB.Location = new System.Drawing.Point(7, 3);
+            this.BTN_Create_EmptyDB.Location = new System.Drawing.Point(3, 3);
             this.BTN_Create_EmptyDB.Name = "BTN_Create_EmptyDB";
             this.BTN_Create_EmptyDB.Size = new System.Drawing.Size(136, 23);
             this.BTN_Create_EmptyDB.TabIndex = 4;
@@ -234,6 +238,16 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tables";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // BTN_Show_Data2
+            // 
+            this.BTN_Show_Data2.Location = new System.Drawing.Point(134, 36);
+            this.BTN_Show_Data2.Name = "BTN_Show_Data2";
+            this.BTN_Show_Data2.Size = new System.Drawing.Size(126, 23);
+            this.BTN_Show_Data2.TabIndex = 7;
+            this.BTN_Show_Data2.Text = "Show data in Table2";
+            this.BTN_Show_Data2.UseVisualStyleBackColor = true;
+            this.BTN_Show_Data2.Click += new System.EventHandler(this.BTN_Show_Data2_Click);
             // 
             // BTN_Show_Data
             // 
@@ -255,15 +269,25 @@
             this.BTN_Table_Create_and_Populate.UseVisualStyleBackColor = true;
             this.BTN_Table_Create_and_Populate.Click += new System.EventHandler(this.BTN_Table_Create_and_Populate_Click);
             // 
-            // BTN_Show_Data2
+            // tabPage3
             // 
-            this.BTN_Show_Data2.Location = new System.Drawing.Point(134, 36);
-            this.BTN_Show_Data2.Name = "BTN_Show_Data2";
-            this.BTN_Show_Data2.Size = new System.Drawing.Size(126, 23);
-            this.BTN_Show_Data2.TabIndex = 7;
-            this.BTN_Show_Data2.Text = "Show data in Table2";
-            this.BTN_Show_Data2.UseVisualStyleBackColor = true;
-            this.BTN_Show_Data2.Click += new System.EventHandler(this.BTN_Show_Data2_Click);
+            this.tabPage3.Controls.Add(this.BTN_ShrinkDB);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(779, 78);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Administration";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // BTN_ShrinkDB
+            // 
+            this.BTN_ShrinkDB.Location = new System.Drawing.Point(6, 3);
+            this.BTN_ShrinkDB.Name = "BTN_ShrinkDB";
+            this.BTN_ShrinkDB.Size = new System.Drawing.Size(115, 23);
+            this.BTN_ShrinkDB.TabIndex = 0;
+            this.BTN_ShrinkDB.Text = "Release Free Space";
+            this.BTN_ShrinkDB.UseVisualStyleBackColor = true;
+            this.BTN_ShrinkDB.Click += new System.EventHandler(this.BTN_ShrinkDB_Click);
             // 
             // Form1
             // 
@@ -284,6 +308,7 @@
             this.tabPage1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -310,6 +335,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button BTN_Show_Data;
         private System.Windows.Forms.Button BTN_Show_Data2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Button BTN_ShrinkDB;
     }
 }
 

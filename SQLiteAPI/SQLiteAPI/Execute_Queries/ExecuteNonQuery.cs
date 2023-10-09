@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SQLite;   // NuGet Package => System.Data.SQLite
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,32 +37,35 @@ namespace Orias_SQLiteAPI
             //=============
             // Body
             //=============
-            try  // Try => Execute SQL
+            if (Process_Status == ProcessStatus.Valid)
             {
-                // Create the SQL Command to Execute
-                SQL_CMD = conn.CreateCommand();
-                SQL_CMD.CommandText = SQL;
+                try  // Try => Execute SQL
+                {
+                    // Create a connection to the database
+                    conn = new SQLiteConnection(Connection_String);
 
-                // Execute the command
-                conn.Open();
-                SQL_CMD.ExecuteNonQuery();
-            }
+                    // Create the SQL Command to Execute
+                    SQL_CMD = conn.CreateCommand();
+                    SQL_CMD.CommandText = SQL;
 
-            catch (Exception ex)  // Catch => Update state to error
-            {
-                Process_Status = ProcessStatus.Error;
+                    // Execute the command
+                    conn.Open();
+                    SQL_CMD.ExecuteNonQuery();
+                }
 
-                // Catch the error
-                Error_MSG = ex.Message.Replace("\r\n", " ");  // Convert the message to one line
-            }
+                catch (Exception ex)  // Catch => Update state to error
+                {
+                    Process_Status = ProcessStatus.Error;
 
-            //=============
-            // Cleanup Environment
-            //=============
-            finally  // Close the database connection
-            {
-                conn.Close();       // Close the connection the database
-                SQL_CMD.Dispose();  // Remove the command from memory
+                    // Catch the error
+                    Error_MSG = ex.Message.Replace("\r\n", " ");  // Convert the message to one line
+                }
+
+                finally  // Always do this, even if there is an error
+                {
+                    conn.Close();       // Close the connection the database
+                    SQL_CMD.Dispose();  // Remove the command from memory
+                }
             }
         } // public void ExecuteNonQuery
     } // public partial class SQLiteAPI
