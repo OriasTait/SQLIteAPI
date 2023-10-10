@@ -22,7 +22,11 @@ namespace Orias_SQLiteAPI
           Error_MSG will contain the encountered error.
         -----------------------------------------------------------------------------------------------
         NOTES:
-        - It is assumed results are being returned by the command being executed.
+        - It is assumed results are being returned by the command being executed.  The results are
+          stored in QueryResults.
+
+        - If multiple queries are passed or multple results are generated, each result set is saved in
+          a separate table data object within the propery QueryResults.
         ===============================================================================================
         */
         {

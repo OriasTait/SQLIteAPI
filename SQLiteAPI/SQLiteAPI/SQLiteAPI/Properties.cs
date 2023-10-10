@@ -51,7 +51,7 @@ namespace Orias_SQLiteAPI
         { get; set; }
         public string DB_Path       // The path associated with the database to use
         { get; set; }
-        public string Full_DB_Path  // The full path associated with the database to use
+        public string Full_DB_Path  // The full path with file name associated with the database to use
         { get; set; }
 
         //=============

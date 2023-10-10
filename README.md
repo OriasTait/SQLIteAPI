@@ -70,7 +70,7 @@ The database behaves like a large Relational Database without the additional ser
 ## SQLite Properties - SQLite Database Information
 * DB_Name       => The name of the database to use
 * DB_Path       => The path associated with the database to use
-* Full_DB_Path  => The full path associated with the database to use
+* Full_DB_Path  => The full path with file name associated with the database to use
 
 ## SQLite Methods
 These are the standardized methods to be called for interfacing with SQLite.
@@ -88,6 +88,10 @@ OUTPUT:
 NOTES:
 - If Create_Type is set to Retain and the the database already exists, an error will be raised.
 
+### Current_Size
+PURPOSE:
+Obtain the current size of the database.
+
 ### ExecuteNonQuery
 PURPOSE:
 Execute the SQL command against the SQLite database.
@@ -99,29 +103,28 @@ OUTPUT:
 NOTES:
 - It is assumed no results are being returned by the command being executed.
 
-* =============
-
-# The API
-
-## SQLite Methods
-These are the standardized methods to be called for interfacing with SQLite.
-
-### Current_Size
-Obtain the current size of the database.
-
 ### ExecuteQuery
-Execute the SQL in the property CommandText to the database connected to in the Initialize method.
+PURPOSE:
+Execute the SQL Command against the SQLite database.
+
+OUTPUT:
+- If successful, the command has been executed and the results will be placed in the QueryResults property;
+  otherwise, the database state will be updated to Error and the Error_MSG will contain the encountered error.
 
 NOTES:
-* This assumes there will be a result set returned by the SQL and places it in the property QueryResults.
-* If multiple queries are passed, each result set is saved in a table data object within the propery QueryResults.
-
-### ExecuteNonQuery
-Execute the SQL command against the SQLite database.
-* It is assumed no results are being returned by the command being executed.
+- It is assumed results are being returned by the command being executed.  The results are stored in QueryResults.
+- If multiple queries are passed or multple results are generated, each result set is saved in a separate table
+  data object within the propery QueryResults.
 
 ### Shrink
+PURPOSE:
 Re-organize the database to use the minimal amount of disk space.
 
-#How to compile
+NOTES:
+- This leverages the SQLite command "VACUUM".  The VACUUM command rebuilds the database file, repacking
+  it into a minimal amount of disk space.
+  
+  Reference: https://www.sqlite.org/lang_vacuum.html
+
+# How to compile
 This was created in Microsoft Visual Studio Community 2022.  Open the file SQLiteAPI.sln in Visual Studio and compile the project.

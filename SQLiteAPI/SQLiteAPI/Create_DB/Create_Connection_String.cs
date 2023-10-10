@@ -46,11 +46,11 @@ namespace Orias_SQLiteAPI
                 {
                     case ConnectionType.DS:
                         // Define the connection String
-                        Connection_String = "Data Source=\"" + DB_Path + DB_Name + "\"; Compress = True; ";
+                        Connection_String = "Data Source=\"" + Full_DB_Path + "\"; Compress = True; ";
                         break;
 
                     case ConnectionType.URI:
-                        Connection_String = "URI=file:" + DB_Path + DB_Name + "; Compress = True; ";
+                        Connection_String = "URI=file:" + Full_DB_Path + "; Compress = True; ";
                         break;
 
                     default:
