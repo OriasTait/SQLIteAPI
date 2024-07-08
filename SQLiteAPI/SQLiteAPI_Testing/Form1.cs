@@ -15,7 +15,7 @@ using SQLiteAPI_Testing.Environment;
 using SQLiteAPI_Testing.Table_Create_and_Populate;
 
 //=============
-// Orias Packages
+// Orias LLC Packages
 //=============
 using Orias_SQLiteAPI;
 
@@ -228,7 +228,7 @@ namespace SQLiteAPI_Testing
         - e         => Arguments passed to from the caller
         -----------------------------------------------------------------------------------------------
         OUTPUT:
-        - The data in table 1 will be displayed
+        - The data in table 2 will be displayed
         ===============================================================================================
         */
         {
