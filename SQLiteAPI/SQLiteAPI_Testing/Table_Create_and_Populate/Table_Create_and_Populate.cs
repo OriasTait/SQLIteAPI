@@ -14,9 +14,8 @@ namespace SQLiteAPI_Testing
 {
     namespace Table_Create_and_Populate
     {
-#pragma warning disable S101 // Types should be named in PascalCase
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S101:Types should be named in PascalCase", Justification = "<Pending>")]
         internal class TC_and_P
-#pragma warning restore S101 // Types should be named in PascalCase
         {
             public ProcessStatus Create_Table_and_Populate(ref SQLiteAPI My_DB)
             /*
