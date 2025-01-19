@@ -59,7 +59,7 @@ The database behaves like a large Relational Database without the additional ser
 ## SQLite Properties - SQLite Command Information
 * Error_MSG      => Current Error message
 * Process_Status => The status of the last process performed
-* QueryResults   => Results of a query in the database
+* QueryResults   => Results of a query in the database stored in a Dataset object.
 * SQL            => SQLite Standard Query Language command (SQL) to process
 * SQL_CMD        => SQLite SQL Command to process in the database
 

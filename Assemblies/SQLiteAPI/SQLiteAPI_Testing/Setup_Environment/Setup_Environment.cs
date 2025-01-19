@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace SQLiteAPI_Testing
         {
             // These values are hard coded for simplified reference
             public const string Database_Status = "";
-            public const string Database_Directory = @"D:\Work\Code\Orias_OSC\SQLIteAPI\Working_Dir";
+            public const string Database_Directory = @"C:\Work\Code\Orias_OSC\SQLIteAPI\Working_Dir";
             public const string Database_Name = "Empty_Database.db";
         } // internal class Env
     } // namespace Environment
