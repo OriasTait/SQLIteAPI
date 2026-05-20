@@ -1,0 +1,609 @@
+# SQLiteAPI Public Contracts Specification
+
+## 1. Purpose
+
+This document defines the initial public contract surface for SQLiteAPI.
+
+The purpose of these contracts is to provide a stable, implementation-agnostic
+API for SQLite operations that can be consumed consistently across supported
+solutions and target frameworks.
+
+This specification must comply with:
+- `/Docs/OS-Structure.md`
+- `/Docs/AI-Guidelines.md`
+- `/copilot-instructions.md`
+- `/Docs/architecture/SQLiteAPI-Architecture-Blueprint.md`
+
+This document defines public API intent and structure. It does not provide
+implementation details.
+
+## 2. Design Principles
+
+The public contracts must satisfy the following principles:
+- Stable for consumers
+- Independent of provider-specific implementation types
+- Suitable for both .NET Framework 4.8 and .NET 8
+- Easy to understand and consume
+- Consistent across lifecycle, status, maintenance, and query operations
+- Safe by default through parameterized execution patterns
+- Incrementally extensible without architectural drift
+
+## 3. Contract Scope
+
+The initial public contract surface should cover these functional areas:
+- Database lifecycle management
+- Database status inspection
+- Database maintenance
+- SQL command execution
+- Query result handling
+- Transaction-aware execution support
+- Error and diagnostic reporting
+
+## 4. Proposed Assembly Responsibility
+
+The types described in this specification are intended for the Contracts layer.
+
+Canonical location:
+- `/SRC/Contracts`
+
+The Contracts layer should contain:
+- Public interfaces
+- DTOs
+- Enums
+- Result models
+- Request models
+- Response models
+
+The Contracts layer must not contain:
+- SQLite provider implementation logic
+- File system implementation logic
+- Business workflow implementation
+- UI concerns
+
+## 5. Core Interface Families
+
+The initial API surface should be organized into the following interface
+families.
+
+### 5.1 Database Lifecycle
+
+Purpose:
+- Manage creation, deletion, and existence validation of SQLite databases
+
+Proposed interface:
+- `ISqliteDatabaseLifecycleService`
+
+Proposed responsibilities:
+- Create a database
+- Delete a database
+- Check whether a database exists
+- Validate whether a database can be opened
+- Retrieve basic metadata about a database file
+
+### 5.2 Database Status
+
+Purpose:
+- Inspect the current status and usability of a SQLite database
+
+Proposed interface:
+- `ISqliteDatabaseStatusService`
+
+Proposed responsibilities:
+- Determine whether the database file exists
+- Determine whether the database file is accessible
+- Determine whether the database is locked or unavailable
+- Run an integrity status check
+- Retrieve basic readiness and environment information
+
+### 5.3 Database Maintenance
+
+Purpose:
+- Provide standard maintenance operations for supported SQLite databases
+
+Proposed interface:
+- `ISqliteDatabaseMaintenanceService`
+
+Proposed responsibilities:
+- Vacuum database
+- Analyze database
+- Reindex database
+- Run integrity check
+- Execute additional maintenance operations added incrementally
+
+### 5.4 SQL Command Execution
+
+Purpose:
+- Execute SQL operations in a standardized and safe manner
+
+Proposed interface:
+- `ISqliteCommandExecutionService`
+
+Proposed responsibilities:
+- Execute non-query SQL commands
+- Execute scalar SQL queries
+- Execute SQL queries returning tabular results
+- Execute batches that may yield multiple result sets
+- Execute parameterized commands
+- Participate in transaction-aware workflows
+
+### 5.5 Composite Facade
+
+Purpose:
+- Provide a simplified entry point for consumers who prefer a single surface
+
+Proposed interface:
+- `ISqliteApi`
+
+Proposed responsibilities:
+- Aggregate lifecycle, status, maintenance, and execution operations through a
+  unified service boundary
+
+Note:
+This composite facade should be optional at the design level. It should not
+replace the more focused interfaces internally.
+
+## 6. Common Contract Models
+
+The public API should standardize request, response, and result models.
+
+The initial model families should include:
+- Database request models
+- Command request models
+- Parameter models
+- Result models
+- Diagnostic models
+- Metadata models
+- Query result models
+
+## 7. Database Identification Models
+
+To keep contracts explicit and extensible, database operations should use a
+shared database reference model.
+
+### 7.1 `SqliteDatabaseReference`
+
+Purpose:
+- Identify the target database for an operation
+
+Suggested fields:
+- `DatabasePath`
+- `Mode` if needed later
+- `CreateIfMissing` where appropriate for specific workflows
+
+Initial rule:
+- `DatabasePath` should be required for file-based SQLite operations
+
+### 7.2 `SqliteDatabaseMetadata`
+
+Purpose:
+- Represent basic descriptive information about a database
+
+Suggested fields:
+- `DatabasePath`
+- `Exists`
+- `FileSizeBytes`
+- `LastModifiedUtc`
+- `IsAccessible`
+- `CanOpen`
+- `UserVersion`
+
+## 8. Lifecycle Contract Models
+
+### 8.1 Create Database
+
+Proposed request model:
+- `CreateSqliteDatabaseRequest`
+
+Suggested fields:
+- `DatabasePath`
+- `OverwriteIfExists`
+- `CreateParentDirectoryIfMissing`
+
+Proposed result model:
+- `CreateSqliteDatabaseResult`
+
+Suggested fields:
+- `Success`
+- `DatabasePath`
+- `Created`
+- `AlreadyExisted`
+- `Message`
+- `Diagnostics`
+
+### 8.2 Delete Database
+
+Proposed request model:
+- `DeleteSqliteDatabaseRequest`
+
+Suggested fields:
+- `DatabasePath`
+- `FailIfNotExists`
+
+Proposed result model:
+- `DeleteSqliteDatabaseResult`
+
+Suggested fields:
+- `Success`
+- `DatabasePath`
+- `Deleted`
+- `DidNotExist`
+- `Message`
+- `Diagnostics`
+
+### 8.3 Database Existence and Open Validation
+
+Proposed methods may return:
+- `DatabaseExistenceResult`
+- `DatabaseOpenValidationResult`
+
+Suggested fields:
+- `Success`
+- `Exists`
+- `CanOpen`
+- `Message`
+- `Diagnostics`
+
+## 9. Status Contract Models
+
+### 9.1 `SqliteDatabaseStatus`
+
+Purpose:
+- Provide a standardized view of current database health and accessibility
+
+Suggested fields:
+- `DatabasePath`
+- `Exists`
+- `IsAccessible`
+- `CanOpen`
+- `IsLocked`
+- `IntegrityCheckPassed`
+- `StatusCode`
+- `StatusMessage`
+- `Diagnostics`
+
+### 9.2 `SqliteDatabaseStatusCode`
+
+Suggested enum values:
+- `Unknown`
+- `Missing`
+- `Accessible`
+- `Locked`
+- `Unavailable`
+- `IntegrityCheckFailed`
+- `InvalidPath`
+- `Error`
+
+## 10. Maintenance Contract Models
+
+### 10.1 `SqliteMaintenanceOperationType`
+
+Suggested enum values:
+- `Vacuum`
+- `Analyze`
+- `Reindex`
+- `IntegrityCheck`
+- `Optimize`
+- `Checkpoint`
+
+### 10.2 `SqliteMaintenanceRequest`
+
+Suggested fields:
+- `DatabasePath`
+- `OperationType`
+- `CommandTimeoutSeconds`
+- `Options`
+
+### 10.3 `SqliteMaintenanceResult`
+
+Suggested fields:
+- `Success`
+- `DatabasePath`
+- `OperationType`
+- `Message`
+- `Diagnostics`
+- `ExecutionDuration`
+
+## 11. SQL Command Request Models
+
+The execution contracts should be request-driven so future expansion remains
+backward-compatible.
+
+### 11.1 `SqliteCommandRequest`
+
+Purpose:
+- Represent a SQL command to execute
+
+Suggested fields:
+- `DatabasePath`
+- `CommandText`
+- `Parameters`
+- `CommandTimeoutSeconds`
+- `CommandType`
+- `UseTransaction`
+
+### 11.2 `SqliteParameter`
+
+Purpose:
+- Represent a SQL parameter in a provider-agnostic way
+
+Suggested fields:
+- `Name`
+- `Value`
+- `DbType`
+- `Direction`
+- `Size`
+- `IsNullable`
+
+### 11.3 `SqliteBatchCommandRequest`
+
+Purpose:
+- Represent a sequence of SQL statements that may produce multiple results
+
+Suggested fields:
+- `DatabasePath`
+- `Commands`
+- `UseTransaction`
+- `CommandTimeoutSeconds`
+
+## 12. SQL Command Result Models
+
+### 12.1 `SqliteCommandResult`
+
+Purpose:
+- Standard result for non-query command execution
+
+Suggested fields:
+- `Success`
+- `RowsAffected`
+- `Message`
+- `Diagnostics`
+- `ExecutionDuration`
+
+### 12.2 `SqliteScalarResult`
+
+Purpose:
+- Standard result for scalar query execution
+
+Suggested fields:
+- `Success`
+- `Value`
+- `ValueType`
+- `Message`
+- `Diagnostics`
+- `ExecutionDuration`
+
+### 12.3 `SqliteQueryResult`
+
+Purpose:
+- Standard result for query execution that returns one or more result sets
+
+Suggested fields:
+- `Success`
+- `ResultSets`
+- `Message`
+- `Diagnostics`
+- `ExecutionDuration`
+
+## 13. Query Result Set Models
+
+The result model must avoid exposing provider-specific classes directly.
+
+### 13.1 `SqliteQueryResultSet`
+
+Suggested fields:
+- `Name`
+- `Ordinal`
+- `Columns`
+- `Rows`
+- `RowCount`
+
+### 13.2 `SqliteQueryColumn`
+
+Suggested fields:
+- `Name`
+- `Ordinal`
+- `DataType`
+- `AllowNull`
+
+### 13.3 `SqliteQueryRow`
+
+Suggested structure:
+- A key/value representation of column name to value
+- Optional ordered value collection if needed for performance or positional
+  access
+
+### 13.4 Data Access Design Note
+
+The row model should remain simple and serialization-friendly.
+
+An initial design should prioritize:
+- Readability
+- Cross-framework compatibility
+- Easy consumer usage
+
+Performance-specific optimizations may be added later if needed.
+
+## 14. Diagnostics Models
+
+Consumers need consistent diagnostics without relying on provider internals.
+
+### 14.1 `SqliteOperationDiagnostic`
+
+Suggested fields:
+- `Code`
+- `Message`
+- `Severity`
+- `Source`
+- `ExceptionType`
+
+### 14.2 `DiagnosticSeverity`
+
+Suggested enum values:
+- `Information`
+- `Warning`
+- `Error`
+- `Critical`
+
+## 15. Common Result Base Models
+
+To support consistency, the Contracts layer should define common result patterns.
+
+### 15.1 `SqliteOperationResult`
+
+Purpose:
+- Base result model for SQLiteAPI operations
+
+Suggested fields:
+- `Success`
+- `Message`
+- `Diagnostics`
+- `ExecutionDuration`
+
+Specialized result types may inherit from or compose this model.
+
+## 16. Transaction Contracts
+
+SQLiteAPI should support transaction-aware workflows without exposing
+implementation details unnecessarily.
+
+### 16.1 Initial Direction
+
+The first implementation should support transaction-aware execution through
+request options rather than exposing low-level provider transaction types.
+
+Suggested initial pattern:
+- `UseTransaction` on command requests
+- Batch execution requests with transactional semantics
+
+### 16.2 Future Extension
+
+If needed later, explicit transaction session contracts may be introduced, such
+as:
+- `ISqliteTransactionSession`
+- `BeginTransactionRequest`
+- `CommitTransactionRequest`
+- `RollbackTransactionRequest`
+
+These should be deferred unless a concrete need emerges during implementation.
+
+## 17. Proposed Interface Method Groups
+
+The following is the recommended initial method grouping for design purposes.
+
+### 17.1 `ISqliteDatabaseLifecycleService`
+
+Suggested method families:
+- Create database
+- Delete database
+- Check database existence
+- Validate database openability
+- Get database metadata
+
+### 17.2 `ISqliteDatabaseStatusService`
+
+Suggested method families:
+- Get database status
+- Check accessibility
+- Check lock status
+- Run integrity status evaluation
+
+### 17.3 `ISqliteDatabaseMaintenanceService`
+
+Suggested method families:
+- Execute maintenance request
+- Vacuum database
+- Analyze database
+- Reindex database
+- Run integrity check
+
+### 17.4 `ISqliteCommandExecutionService`
+
+Suggested method families:
+- Execute non-query command
+- Execute scalar command
+- Execute query command
+- Execute batch command
+
+### 17.5 `ISqliteApi`
+
+Suggested method families:
+- Expose grouped access to lifecycle, status, maintenance, and execution
+  services
+- Or provide direct pass-through operations if a facade-first design is adopted
+
+## 18. Synchronous and Asynchronous Support
+
+The Contracts layer should be designed with framework realities in mind.
+
+### 18.1 Initial Recommendation
+
+The API should support:
+- Synchronous operations for `.NET Framework 4.8` compatibility
+- Asynchronous operations for `.NET 8` and modern consumer scenarios where
+  practical
+
+### 18.2 Contract Strategy
+
+Two acceptable patterns exist:
+- Define both sync and async methods in the contract surface
+- Define sync-first contracts and add async contracts incrementally
+
+Initial recommendation:
+- Design the contracts so async expansion is possible without breaking
+  consumers
+
+The exact method signatures should be finalized during the implementation design
+phase.
+
+## 19. Error and Exception Policy
+
+The public contracts should follow these rules:
+- Expected operational outcomes should be represented with structured result
+  models
+- Validation failures should produce clear result messages and diagnostics
+- Unrecoverable failures may still throw exceptions
+- Exception behavior must be documented consistently for consumers
+
+The goal is predictable behavior rather than exception-heavy design.
+
+## 20. Versioning and Compatibility Principles
+
+Because this solution is intended for open-source reuse, the contract surface
+must be treated as a compatibility boundary.
+
+Rules:
+- Changes to Contracts should be minimal and deliberate
+- New optional fields are preferred over breaking changes
+- Additive interfaces are preferred over modifying stable interfaces when
+  possible
+- Provider-specific concerns must not leak into public abstractions unless
+  absolutely necessary
+
+## 21. Documentation Expectations for Contracts
+
+The eventual implementation of these contracts should be accompanied by:
+- XML documentation comments in source
+- Consumer examples for each major interface family
+- A getting-started guide
+- A reference guide describing request and result models
+
+## 22. Immediate Next Implementation Artifacts
+
+After approval of this public contracts specification, the next recommended
+artifacts are:
+1. A framework and platform support matrix document
+2. A packaging and dependency strategy document
+3. Initial Contracts project file design
+4. The first set of interface and model files in `/SRC/Contracts`
+
+## 23. Final Principle
+
+The SQLiteAPI Contracts layer must remain:
+- Stable
+- Clear
+- Provider-agnostic
+- Incrementally extensible
+- Easy for consumers to adopt
+
+The contract boundary is the foundation for all implementation work that
+follows.
