@@ -20,10 +20,12 @@ SQLiteAPI solution should be implemented within the approved structure.
 
 SQLiteAPI is intended to provide a reusable, open-source, SQLite-focused API for
 use by other solutions, including:
+- Unity applications
 - Desktop applications
 - Console applications
 - Class libraries
 - Web applications
+- Service and automation solutions
 - Other reusable components
 
 The primary design goal is to provide a stable and standardized interface for
@@ -117,6 +119,22 @@ SQLiteAPI should be designed to satisfy the following goals:
 - Preserve enterprise layer separation
 - Remain suitable for open-source distribution
 - Enable testing, documentation, and example-based adoption
+
+### 4.1 Design Policy Position
+
+SQLiteAPI must remain generic in its public contract design and must not be
+shaped as a Unity-specific API.
+
+However, Unity 6 is a primary consumer profile for this solution and must be
+treated as a first-class concern in:
+- provider selection
+- packaging strategy
+- documentation planning
+- validation planning
+- sample and adoption guidance
+
+This means SQLiteAPI should remain platform-equal in architectural intent while
+allowing validation maturity to progress in practical phases.
 
 ## 5. Canonical Repository Placement
 
@@ -464,6 +482,17 @@ The preferred initial example is a console application that demonstrates:
 
 If practical, example applications may be produced for both `.NET Framework 4.8`
 and `.NET 8`.
+
+### 15.1 Unity Consumer Examples
+
+Because Unity 6 is a primary consumer profile, the documentation and example
+strategy should eventually include at least one Unity-oriented integration
+example.
+
+This does not require the core API to become Unity-specific. It means the
+project should demonstrate how a Unity consumer references the managed
+assemblies, handles runtime dependencies, and uses the public Contracts safely
+within Unity-supported execution models.
 
 ## 16. Phased Implementation Roadmap
 
