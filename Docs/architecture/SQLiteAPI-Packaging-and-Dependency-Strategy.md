@@ -16,6 +16,7 @@ This document must comply with:
 - `/Docs/architecture/SQLiteAPI-Architecture-Blueprint.md`
 - `/Docs/architecture/SQLiteAPI-Public-Contracts-Specification.md`
 - `/Docs/architecture/SQLiteAPI-Framework-and-Platform-Support-Matrix.md`
+- `/Docs/architecture/SQLiteAPI-Design-Policy-Statement.md`
 
 This document defines packaging direction and dependency expectations. It does
 not define detailed implementation code.
@@ -27,6 +28,8 @@ The packaging strategy must satisfy the following goals:
 - Keep the public API stable and easy to adopt
 - Support both `.NET Framework 4.8` and `.NET 8`
 - Support cross-platform deployment where approved
+- Support Unity 6 as a primary consumer profile without making the API
+  Unity-specific
 - Avoid unnecessary exposure of SQLite provider internals
 - Clearly document runtime dependencies
 - Support open-source distribution and contributor understanding
@@ -43,6 +46,8 @@ SQLiteAPI packaging must follow these principles:
 - Cross-platform support claims must reflect validated runtime behavior
 - The simplest consumer experience should be preferred when multiple valid
   packaging options exist
+- Unity 6 should be treated as a primary consumer profile in packaging guidance
+  without redefining SQLiteAPI as a Unity-specific product
 
 ## 4. Scope of Deliverables
 
@@ -108,6 +113,19 @@ Consumers should ideally need only:
 If runtime packaging requires native assets, those must be included with the
 consumer application in a documented, predictable manner.
 
+### 6.3 Unity 6 Packaging Position
+
+Unity 6 must be treated as a primary consumer profile in packaging design.
+
+This means packaging guidance must eventually define:
+- how Unity consumers reference SQLiteAPI managed assemblies
+- how provider-managed dependencies are delivered to Unity projects
+- how native SQLite runtime assets are delivered per Unity target platform
+- what limitations apply under IL2CPP/AOT compilation where relevant
+
+The packaging strategy must support Unity strongly without redefining SQLiteAPI
+as a Unity-specific product.
+
 ## 7. Definition of “Standalone”
 
 SQLiteAPI is intended to be standalone in the sense that it should not require a
@@ -153,7 +171,7 @@ supported platform.
 ## 9.1 .NET Framework 4.8
 
 Packaging position:
-- Windows-only
+- Windows-only in standard .NET runtime scenarios
 - Managed outputs will be framework-specific
 - Native runtime requirements must be documented if required by the chosen
   provider
@@ -175,6 +193,22 @@ Expected consumer experience:
 - include any required target-specific runtime assets
 - deploy according to the application’s runtime model
 
+## 9.3 Unity 6 Consumer Position
+
+Packaging position:
+- Unity is a primary consumer profile
+- managed assembly compatibility must be evaluated separately from standard
+  runtime support statements
+- packaging guidance must account for Unity project structure and target
+  platform output behavior
+- IL2CPP/AOT implications must be considered where relevant
+
+Expected consumer experience:
+- reference compatible SQLiteAPI managed assemblies from a Unity project
+- include any required provider-managed and native runtime assets in a
+  Unity-compatible way
+- follow documented target-platform guidance for validated Unity scenarios
+
 ## 10. Platform-Specific Packaging Position
 
 ## 10.1 Windows
@@ -188,6 +222,7 @@ Expected packaging behavior:
 
 Expected packaging behavior:
 - supported under `.NET 8`
+- targeted for Unity 6 consumption
 - may require platform-specific native runtime assets
 - distribution instructions must clearly identify any required files
 
@@ -195,6 +230,7 @@ Expected packaging behavior:
 
 Expected packaging behavior:
 - supported under `.NET 8`
+- targeted for Unity 6 consumption
 - may require platform-specific native runtime assets
 - documentation may need to note environment-specific deployment considerations
 
@@ -202,6 +238,8 @@ Expected packaging behavior:
 
 Expected packaging behavior:
 - supported under `.NET 8`, subject to provider/runtime validation
+- targeted for Unity 6 consumption, subject to IL2CPP/AOT and packaging
+  validation
 - may require a different packaging approach than desktop/server targets
 - documentation must clearly identify any Android-specific constraints
 
@@ -274,6 +312,7 @@ Open-source distribution should include:
 - example applications
 - quick-start usage examples
 - explanation of framework and platform differences
+- Unity-specific guidance where Unity scenarios are supported or targeted
 
 No release should make broad portability claims without validated packaging
 behavior.
@@ -281,6 +320,7 @@ behavior.
 ## 15. Consumer Usage Patterns
 
 The packaging strategy must support at least these usage patterns:
+- reference from a Unity application
 - reference from a desktop application
 - reference from a console application
 - reference from another class library
@@ -302,6 +342,11 @@ Sample applications should show:
 
 These examples should reduce ambiguity for consumers.
 
+Unity-oriented examples should eventually demonstrate:
+- managed assembly reference strategy
+- target-platform packaging expectations
+- any validated Unity-specific runtime notes
+
 ## 17. Release Packaging Options for Future Evaluation
 
 The initial release should keep packaging simple and explicit. Future evaluation
@@ -310,6 +355,7 @@ may consider:
 - packaging simplification for specific targets
 - alternative delivery mechanisms
 - stronger facade-based consumer entry points
+- Unity-oriented distribution guidance where it improves adoption clarity
 
 These possibilities must be evaluated incrementally and must not break the
 approved contract surface.
@@ -339,7 +385,8 @@ should be:
    - `.NET Framework 4.8`
    - `.NET 8`
 
-3. Explicit documentation of any native runtime requirements by platform
+3. Explicit documentation of any native runtime requirements by platform and by
+   validated Unity consumer scenario where applicable
 
 4. Example applications demonstrating the minimal working consumer setup
 
