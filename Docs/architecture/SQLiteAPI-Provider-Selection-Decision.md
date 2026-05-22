@@ -243,12 +243,16 @@ solution's primary real-world consumer profile.
 ## 12. Packaging Impact of the Decision
 
 The provider decision directly affects:
-- number of required assemblies
+- number and clarity of required consumer-facing assemblies
 - native runtime asset requirements
 - platform-specific deployment instructions
 - sample application design
 - support claims in open-source documentation
 - Unity consumer packaging guidance
+
+Consumer-facing assembly naming should remain concise. Provider selection should
+not force unnecessarily long or confusing distribution artifact names when
+clearer packaging approaches are available.
 
 Therefore, the chosen provider strategy must remain closely aligned with the
 packaging strategy document.
