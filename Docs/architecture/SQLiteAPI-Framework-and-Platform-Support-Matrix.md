@@ -310,13 +310,17 @@ the simplest practical form.
 
 ## 10. Output Naming Expectations
 
-The final implementation may produce framework-specific outputs such as:
-- `SQLiteAPI.Contracts_NET48.dll`
-- `SQLiteAPI.Contracts_NET8.dll`
-- `SQLiteAPI.Application_NET48.dll`
-- `SQLiteAPI.Application_NET8.dll`
-- `SQLiteAPI.Infrastructure.SQLite_NET48.dll`
-- `SQLiteAPI.Infrastructure.SQLite_NET8.dll`
+The final implementation should prefer concise consumer-facing assembly names:
+- `SQLiteAPI.Contracts.dll`
+- `SQLiteAPI.App.dll`
+- `SQLiteAPI.Sqlite.dll`
+
+A sample output may use a name such as:
+- `SQLiteAPI.ConsoleSample.exe`
+
+Target framework differences should normally be expressed through output folder
+layout, package structure, or release metadata rather than repeated in the DLL
+file name.
 
 If platform-specific runtime assets are required, they must use clear naming and
 documentation so consumers understand which assets are required for:
