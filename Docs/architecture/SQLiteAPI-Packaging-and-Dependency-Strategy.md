@@ -69,24 +69,31 @@ assemblies.
 
 ### 5.1 Core Managed Assemblies
 
-The initial target family should include:
-- `SQLiteAPI.Contracts`
-- `SQLiteAPI.Application`
-- `SQLiteAPI.Infrastructure.SQLite`
+The initial consumer-facing assembly family should include:
+- `SQLiteAPI.Contracts.dll`
+- `SQLiteAPI.App.dll`
+- `SQLiteAPI.Sqlite.dll`
 
-Framework-specific build outputs may include:
-- `SQLiteAPI.Contracts_NET48.dll`
-- `SQLiteAPI.Contracts_NET8.dll`
-- `SQLiteAPI.Application_NET48.dll`
-- `SQLiteAPI.Application_NET8.dll`
-- `SQLiteAPI.Infrastructure.SQLite_NET48.dll`
-- `SQLiteAPI.Infrastructure.SQLite_NET8.dll`
+Target framework distinctions should normally be handled by output folder
+structure, package layout, or release metadata rather than being repeated in the
+DLL file name.
+
+For example:
+- `bin/Release/net48/SQLiteAPI.Contracts.dll`
+- `bin/Release/net8.0/SQLiteAPI.Contracts.dll`
+- `bin/Release/net48/SQLiteAPI.App.dll`
+- `bin/Release/net8.0/SQLiteAPI.App.dll`
+- `bin/Release/net48/SQLiteAPI.Sqlite.dll`
+- `bin/Release/net8.0/SQLiteAPI.Sqlite.dll`
 
 ### 5.2 Sample and Demonstration Outputs
 
 Optional but recommended outputs include:
-- `SQLiteAPI.ConsoleSample_NET48.exe`
-- `SQLiteAPI.ConsoleSample_NET8.exe`
+- `SQLiteAPI.ConsoleSample.exe`
+
+Framework-specific distinction for sample outputs should normally be handled by
+output folder structure rather than by embedding the target framework in the
+file name.
 
 These are not runtime dependencies for consumers. They exist only to demonstrate
 usage.
@@ -271,16 +278,20 @@ Names should:
 
 ### 12.2 Initial Naming Direction
 
-Recommended output names:
-- `SQLiteAPI.Contracts_NET48.dll`
-- `SQLiteAPI.Contracts_NET8.dll`
-- `SQLiteAPI.Application_NET48.dll`
-- `SQLiteAPI.Application_NET8.dll`
-- `SQLiteAPI.Infrastructure.SQLite_NET48.dll`
-- `SQLiteAPI.Infrastructure.SQLite_NET8.dll`
+Recommended consumer-facing output names:
+- `SQLiteAPI.Contracts.dll`
+- `SQLiteAPI.App.dll`
+- `SQLiteAPI.Sqlite.dll`
 
-If platform-specific native runtime files are required, they must be packaged
-with equally clear naming and documentation.
+Recommended sample output name:
+- `SQLiteAPI.ConsoleSample.exe`
+
+Framework-specific distinctions should normally be represented by output
+directories, package structure, or release metadata rather than repeated in file
+names.
+
+This keeps distribution artifacts shorter, clearer, and easier for consumers to
+understand.
 
 ## 13. Dependency Documentation Requirements
 
