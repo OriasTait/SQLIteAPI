@@ -16,6 +16,7 @@ This document must comply with:
 - `/Docs/architecture/SQLiteAPI-Public-Contracts-Specification.md`
 - `/Docs/architecture/SQLiteAPI-Framework-and-Platform-Support-Matrix.md`
 - `/Docs/architecture/SQLiteAPI-Packaging-and-Dependency-Strategy.md`
+- `/Docs/architecture/SQLiteAPI-Design-Policy-Statement.md`
 
 This document is a design decision record. It does not define final source code.
 
@@ -34,6 +35,8 @@ The initial recommended provider strategy for SQLiteAPI is:
    parity on day one
 5. Prefer a provider strategy that minimizes consumer complexity without hiding
    real runtime requirements
+6. Treat Unity 6 as a primary consumer profile in provider evaluation without
+   turning the public API into a Unity-specific abstraction
 
 The initial implementation should avoid leaking any provider-specific classes
 into the Contracts layer.
@@ -44,6 +47,7 @@ The provider choice must support the following requirements:
 - stable public API surface
 - Windows support for `.NET Framework 4.8`
 - modern cross-platform support for `.NET 8`
+- Unity 6 viability as a primary consumer profile
 - open-source usability
 - manageable packaging complexity
 - realistic runtime dependency documentation
@@ -60,6 +64,7 @@ The provider-selection decision must prioritize:
 - implementation isolation
 - ability to test consistently
 - minimal architectural drift
+- Unity-aware validation planning without Unity-specific contract distortion
 
 The decision must not prioritize convenience at the cost of inaccurate support
 claims.
@@ -84,6 +89,7 @@ Potential disadvantages:
 - may impose packaging/runtime tradeoffs that are suboptimal on one target
 - may not provide the best Android path
 - may still require multiple native runtime assets across platforms
+- may still prove insufficient for some Unity packaging or IL2CPP constraints
 
 ### 5.2 Provider Approach B - Split Provider Strategy by Target Family
 
@@ -95,6 +101,8 @@ Potential advantages:
 - more flexibility by target framework
 - can optimize for legacy Windows on `NET48`
 - can optimize for modern cross-platform support on `.NET 8`
+- may allow different handling if Unity viability differs from standard runtime
+  viability
 
 Potential disadvantages:
 - more internal complexity
@@ -114,6 +122,8 @@ Potential advantages:
 - easier long-term evolution
 - simpler future experimentation
 - reduces risk of public contract contamination
+- creates the best long-term flexibility if Unity and non-Unity runtime realities
+  diverge
 
 Potential disadvantages:
 - requires disciplined implementation design
@@ -128,6 +138,9 @@ Each provider strategy should be evaluated against:
 - macOS compatibility
 - Linux compatibility
 - Android feasibility
+- Unity 6 compatibility
+- IL2CPP/AOT viability
+- Unity Android feasibility
 - packaging complexity
 - native dependency complexity
 - documentation complexity
@@ -183,6 +196,8 @@ The initial recommended decision is:
   - `.NET 8` on Linux
   - `.NET 8` on macOS
 - Treat Android as a phase-following validation target
+- Include Unity 6 in provider validation planning rather than leaving it as an
+  incidental compatibility scenario
 
 ## 10. Why a Provider-Agnostic Contract Matters
 
@@ -210,6 +225,21 @@ Initial decision:
 This protects the project from overcommitting before runtime validation is
 complete.
 
+## 11.1 Unity-Centric Validation Without Unity-Centric Contracts
+
+Unity 6 must strongly influence provider selection because it is a primary
+consumer profile for this solution.
+
+However, the provider decision must not distort the public Contracts layer into
+a Unity-specific shape. The correct design balance is:
+- generic public contracts
+- Unity-aware provider evaluation
+- Unity-aware packaging evaluation
+- Unity-aware validation planning
+
+This keeps SQLiteAPI open-source and reusable while still aligning with the
+solution's primary real-world consumer profile.
+
 ## 12. Packaging Impact of the Decision
 
 The provider decision directly affects:
@@ -218,6 +248,7 @@ The provider decision directly affects:
 - platform-specific deployment instructions
 - sample application design
 - support claims in open-source documentation
+- Unity consumer packaging guidance
 
 Therefore, the chosen provider strategy must remain closely aligned with the
 packaging strategy document.
@@ -239,6 +270,7 @@ The following risks must be managed regardless of provider selection:
 - file locking and file path differences
 - Android-specific runtime and packaging behavior
 - potential differences between legacy and modern framework execution patterns
+- Unity-specific packaging and IL2CPP/AOT runtime behavior
 
 These risks reinforce the decision to isolate provider logic in Infrastructure.
 
@@ -251,13 +283,18 @@ The provider decision requires testing at multiple levels:
 - cross-framework tests
 - cross-platform validation where supported
 - packaging/deployment smoke tests
+- Unity compatibility validation where support is claimed or targeted
 
 The initial recommended validation order remains:
 1. Windows on `NET48`
 2. Windows on `.NET 8`
 3. Linux on `.NET 8`
 4. macOS on `.NET 8`
-5. Android on `.NET 8`
+5. Unity 6 Windows
+6. Unity 6 Android
+7. Unity 6 macOS
+8. Unity 6 Linux
+9. Android on `.NET 8`
 
 ## 16. Open-Source Implications
 
@@ -281,6 +318,8 @@ The initial decision is:
   where practical
 - SQLiteAPI will avoid promising Android production parity until runtime and
   packaging validation are complete
+- Unity 6 will be treated as a primary consumer profile in provider evaluation
+  and validation planning
 - SQLiteAPI may support alternate Infrastructure implementations in the future if
   needed without redesigning the public contract surface
 
@@ -291,6 +330,7 @@ planning:
 - exact provider package/library selection
 - exact native asset delivery model
 - exact Android packaging mechanics
+- exact Unity packaging mechanics
 - exact DI registration strategy by framework target
 
 These decisions should be captured in follow-up implementation records once the
