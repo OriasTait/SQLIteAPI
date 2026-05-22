@@ -1,0 +1,159 @@
+# SQLiteAPI Design Policy Statement
+
+## 1. Purpose
+
+This document defines the governing design policy for SQLiteAPI.
+
+Its purpose is to clarify how SQLiteAPI should balance:
+- generic open-source API design
+- platform-equal architectural intent
+- provider-agnostic contract design
+- practical validation priorities
+- Unity 6 as a major real-world consumer profile
+
+This policy supplements and guides the architectural documents for SQLiteAPI. It
+does not replace detailed framework, packaging, provider, or contract guidance.
+
+## 2. Core Position
+
+SQLiteAPI must remain a generic, open-source SQLite API.
+
+It must not become a Unity-specific API, a desktop-only API, or an API shaped
+primarily around any single consumer technology.
+
+The public Contracts boundary must remain:
+- provider-agnostic
+- consumer-friendly
+- platform-conscious
+- suitable for reuse across multiple application types
+
+## 3. Platform Equality Principle
+
+Approved platforms must be treated as equal in architectural intent.
+
+This means the public contract design, overall structure, and long-term
+direction of SQLiteAPI must not structurally privilege one approved platform
+over another without an explicit documented reason.
+
+Platform equality does not require:
+- identical validation maturity on day one
+- identical packaging details on every target
+- identical rollout order across all targets
+
+Platform equality does require:
+- honest support statements
+- validation-driven support claims
+- avoidance of unnecessary platform bias in public API design
+- documentation of real constraints where they exist
+
+## 4. Consumer Profile Principle
+
+SQLiteAPI is intended for multiple consumer profiles, including:
+- Unity applications
+- desktop applications
+- console applications
+- class libraries
+- web applications
+- services
+- automation and tooling solutions
+- other reusable components
+
+No one consumer profile should redefine the public API into a technology-specific
+shape unless that decision is explicitly documented and justified.
+
+## 5. Unity 6 Position
+
+Unity 6 is a primary consumer profile for SQLiteAPI.
+
+This means Unity 6 must be treated as a first-class concern in:
+- validation planning
+- provider selection
+- packaging strategy
+- documentation strategy
+- sample planning
+- runtime compatibility review
+
+However, Unity 6 being a primary consumer profile does not mean SQLiteAPI should
+become Unity-specific in its contract design or product identity.
+
+## 6. Generic Contract Principle
+
+The Contracts layer must remain generic and reusable.
+
+It should avoid unnecessary dependence on:
+- Unity-specific APIs
+- provider-specific types
+- platform-specific implementation details
+- consumer-specific runtime assumptions
+
+Where practical, contract design should remain compatible with execution models
+relevant to approved consumers, including Unity and standard .NET scenarios,
+without collapsing the API into a consumer-specific abstraction.
+
+## 7. Validation-Driven Support Principle
+
+Support claims must be based on validated behavior rather than assumption.
+
+This applies to:
+- standard .NET runtime support
+- Unity 6 consumer support
+- provider/runtime packaging claims
+- platform-specific deployment claims
+
+A platform or consumer profile may be an approved target before it is fully
+validated, but documentation must clearly distinguish:
+- intended support
+- targeted support
+- validated support
+
+## 8. Packaging and Provider Principle
+
+Packaging and provider decisions must support the generic API while reflecting
+real consumer needs.
+
+This means:
+- provider selection must account for Unity viability
+- packaging strategy must account for Unity delivery requirements
+- packaging strategy must also remain suitable for non-Unity consumers
+- runtime dependency documentation must remain explicit and honest
+
+The project should prefer one reusable API with adaptable implementation and
+distribution guidance over separate consumer-specific APIs unless a strong reason
+emerges to split them.
+
+## 9. Documentation Principle
+
+Documentation must reflect both the generic nature of SQLiteAPI and the real
+importance of Unity 6 as a consumer profile.
+
+Documentation should:
+- explain standard .NET usage
+- explain Unity usage where supported or targeted
+- distinguish standard runtime support from Unity compatibility
+- identify validation status clearly
+- avoid overstating platform parity before validation is complete
+
+## 10. Strategic Outcome
+
+The intended strategic outcome is:
+
+- one generic SQLite API
+- one reusable public contract model
+- provider-specific implementation isolated behind the contract boundary
+- platform-equal architectural direction
+- Unity 6 treated as a primary real-world adoption and validation path
+- no unnecessary fragmentation into Unity-specific and non-Unity-specific APIs
+
+## 11. Final Principle
+
+SQLiteAPI must remain:
+- generic in API identity
+- platform-equal in architectural direction
+- honest in support claims
+- practical in rollout sequencing
+- Unity-aware in validation and packaging
+- reusable for open-source adoption
+
+The correct balance is not “generic versus Unity.”
+The correct balance is a generic API with Unity treated as a primary consumer
+profile rather than an afterthought.
