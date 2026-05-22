@@ -61,21 +61,38 @@ SQLiteAPI is intended to support the following operating systems:
 - Linux
 - Android
 
-However, support varies by target framework.
+However, support must be interpreted through three distinct lenses:
+1. standard .NET runtime support
+2. Unity 6 consumer compatibility
+3. validated provider/runtime packaging support
+
+A support statement is incomplete unless all three are considered.
 
 ## 5. Support Matrix Summary
 
+### 5.1 Standard .NET Runtime Matrix
+
 | Target | Windows | macOS | Linux | Android | Notes |
 |---|---|---|---|---|---|
-| .NET Framework 4.8 | Supported | Not Supported | Not Supported | Not Supported | Windows-only runtime |
+| .NET Framework 4.8 | Supported | Not Supported | Not Supported | Not Supported | Standard Microsoft .NET Framework runtime position |
 | .NET 8.0 | Supported | Supported | Supported | Supported | Subject to provider/runtime packaging validation |
+
+### 5.2 Unity 6 Consumer Compatibility Matrix
+
+| Consumer Context | Windows | macOS | Linux | Android | Notes |
+|---|---|---|---|---|---|
+| Unity 6 using `NET_Unity_4_8` | Targeted | Targeted | Targeted | Targeted | Managed assembly compatibility is possible, subject to IL2CPP/AOT and SQLite provider/runtime validation |
+
+Unity's `NET_Unity_4_8` profile targets the union of the `.NET Framework 4.8`
+and `.NET Standard 2.1` API surface, so Unity compatibility must be evaluated
+separately from the standard Microsoft `.NET Framework 4.8` runtime statement.
 
 ## 6. Detailed Support Position
 
-## 6.1 .NET Framework 4.8
+## 6.1 Standard .NET Framework 4.8
 
 Support status:
-- Supported for Windows only
+- Supported for Windows only in standard .NET runtime scenarios
 
 Expected use cases:
 - Existing enterprise desktop applications
@@ -84,21 +101,41 @@ Expected use cases:
 - Existing Windows-hosted services
 - Existing ASP.NET Framework applications where applicable
 
-Not supported:
+Not supported in standard runtime terms:
 - macOS
 - Linux
 - Android
 
 Reason:
-- .NET Framework 4.8 is a Windows-only runtime
+- standard `.NET Framework 4.8` is a Windows-only runtime
 
 Implementation expectation:
-- The Contracts, Application, and Infrastructure layers may produce `NET48`
-  outputs where practical
-- Any `NET48` sample applications are Windows-only
-- All public documentation must clearly identify this limitation
+- any `NET48` general-purpose output intended for standard non-Unity runtime
+  consumption should be documented as Windows-only
+- all public documentation must clearly identify this limitation
 
-## 6.2 .NET 8.0
+## 6.2 Unity 6 Consumer Position
+
+Support status:
+- Unity 6 consumption is targeted for Windows, macOS, Linux, and Android
+- support must be validated rather than assumed
+
+Important notes:
+- Unity 6 consumers use Unity's own scripting/runtime compatibility model
+- Unity's `NET_Unity_4_8` profile is not equivalent to claiming that the
+  Microsoft `.NET Framework 4.8` runtime itself runs on every target platform
+- managed compatibility alone is not sufficient to prove SQLiteAPI support
+
+Unity builds frequently rely on IL2CPP and ahead-of-time compilation for target
+platform output, which can affect native interop, reflection usage, generic code
+generation, and runtime packaging behavior.
+
+Implementation expectation:
+- Unity compatibility must be tested explicitly
+- provider/native packaging must be tested explicitly
+- Android support must remain a validated target until proven in working builds
+
+## 6.3 .NET 8.0
 
 Support status:
 - Supported for Windows
@@ -107,16 +144,16 @@ Support status:
 - Supported for Android
 
 Important note:
-- Support is contingent on validating the selected SQLite provider and its
+- support is contingent on validating the selected SQLite provider and its
   runtime packaging behavior for each target environment
 
 Expected use cases:
-- Modern console applications
-- Modern class libraries
+- modern console applications
+- modern class libraries
 - ASP.NET Core applications
-- Cross-platform services and tools
+- cross-platform services and tools
 - Android-hosted usage scenarios where supported by the selected provider
-- Other modern .NET 8 consumer applications
+- other modern .NET 8 consumer applications
 
 ## 7. Platform-Specific Expectations
 
@@ -126,8 +163,9 @@ Support priority:
 - Highest priority for both target frameworks
 
 Expected support:
-- Full support for `.NET Framework 4.8`
+- Full support for standard `.NET Framework 4.8`
 - Full support for `.NET 8`
+- Unity 6 support is targeted and must be validated
 - Earliest validation target for packaging and integration
 
 Expected scenarios:
@@ -136,33 +174,39 @@ Expected scenarios:
 - Console applications
 - Web applications
 - Build/automation tools
+- Unity consumer applications
 
 ## 7.2 macOS
 
 Support priority:
 - Supported under `.NET 8`
+- Targeted for Unity 6 consumption
 
 Expected support:
 - Runtime support must be validated against the selected SQLite provider and
   packaging model
 - Public contract parity should be maintained unless a provider/runtime
   constraint prevents it
+- Unity 6 behavior must be validated independently from standard .NET behavior
 
 Expected scenarios:
 - Console tools
 - .NET 8 applications
 - Cross-platform service or library consumers
+- Unity consumer applications
 
 ## 7.3 Linux
 
 Support priority:
 - Supported under `.NET 8`
+- Targeted for Unity 6 consumption
 
 Expected support:
 - Runtime support must be validated against the selected SQLite provider and
   packaging model
 - Linux distribution differences may need documentation if they affect runtime
   dependencies
+- Unity 6 behavior must be validated independently from standard .NET behavior
 
 Expected scenarios:
 - Console tools
@@ -170,11 +214,14 @@ Expected scenarios:
 - Containers
 - Server-hosted applications
 - Build and automation utilities
+- Unity consumer applications
 
 ## 7.4 Android
 
 Support priority:
 - Supported under `.NET 8`, subject to provider/runtime validation
+- Targeted for Unity 6 consumption, subject to IL2CPP/AOT and packaging
+  validation
 
 Expected support:
 - Must be treated as a distinct packaging and runtime validation target
@@ -185,11 +232,12 @@ Expected support:
 Expected scenarios:
 - Android applications or libraries consuming SQLiteAPI where the provider
   supports the target runtime and packaging model
+- Unity consumer applications where validated
 
 ## 8. Contract Consistency Across Targets
 
 The public Contracts layer should remain as consistent as possible between
-`NET48` and `.NET 8`.
+`NET48`, Unity-compatible usage scenarios, and `.NET 8`.
 
 Rules:
 - Public interfaces should have the same conceptual behavior across targets
@@ -225,6 +273,7 @@ SQLite implementations may require native runtime components depending on:
 - operating system
 - deployment style
 - selected provider
+- Unity/IL2CPP packaging behavior where applicable
 
 Therefore, platform support is not only a framework issue. It is also a runtime
 packaging issue.
@@ -269,7 +318,11 @@ documentation so consumers understand which assets are required for:
 
 ## 11. Capability Expectations by Target
 
-The target support matrix should aim for the following capability alignment.
+Capability expectations must distinguish between:
+- standard .NET runtime support
+- Unity 6 consumer support
+
+### 11.1 Standard .NET Runtime Capability Matrix
 
 | Capability | .NET Framework 4.8 | .NET 8 Windows | .NET 8 macOS | .NET 8 Linux | .NET 8 Android |
 |---|---|---|---|---|---|
@@ -280,16 +333,27 @@ The target support matrix should aim for the following capability alignment.
 | Execute non-query SQL | Supported | Supported | Supported | Supported | Targeted |
 | Execute query returning result sets | Supported | Supported | Supported | Supported | Targeted |
 
+### 11.2 Unity 6 Consumer Capability Matrix
+
+| Capability | Unity 6 Windows | Unity 6 macOS | Unity 6 Linux | Unity 6 Android |
+|---|---|---|---|---|
+| Create database | Targeted | Targeted | Targeted | Targeted |
+| Delete database | Targeted | Targeted | Targeted | Targeted |
+| Check status | Targeted | Targeted | Targeted | Targeted |
+| Perform maintenance | Targeted | Targeted | Targeted | Targeted |
+| Execute non-query SQL | Targeted | Targeted | Targeted | Targeted |
+| Execute query returning result sets | Targeted | Targeted | Targeted | Targeted |
+
 Note:
-- “Supported” means the capability is part of the intended baseline
-- “Targeted” means it is intended, but requires explicit provider/runtime
-  validation during implementation
+- `Supported` means the capability is part of the intended validated baseline
+- `Targeted` means the capability is intended but still requires explicit
+  provider/runtime and platform validation
 
 ## 12. Validation Requirements
 
 Before claiming production readiness, SQLiteAPI should validate at minimum:
 
-### 12.1 For .NET Framework 4.8
+### 12.1 For standard .NET Framework 4.8
 - Windows build success
 - Windows runtime execution
 - Database lifecycle operations
@@ -304,6 +368,13 @@ Before claiming production readiness, SQLiteAPI should validate at minimum:
 - Android viability validation for selected packaging/provider approach
 - Cross-platform parity for core contract behavior
 
+### 12.3 For Unity 6 Consumption
+- managed assembly compatibility validation
+- IL2CPP/AOT compatibility validation where applicable
+- provider/native packaging validation
+- file system and deployment validation by target platform
+- working scenario validation for Windows, macOS, Linux, and Android as claimed
+
 ## 13. Testing Implications
 
 The support matrix has direct testing consequences.
@@ -314,13 +385,18 @@ Testing should include:
 - file system behavior validation by target
 - packaging/deployment validation for supported platforms
 - smoke tests for example applications
+- Unity 6 compatibility validation where support is claimed
 
 The first implementation phase may prioritize:
 1. Windows on `NET48`
 2. Windows on `.NET 8`
 3. Linux on `.NET 8`
 4. macOS on `.NET 8`
-5. Android on `.NET 8`
+5. Unity 6 Windows
+6. Unity 6 Android
+7. Unity 6 macOS
+8. Unity 6 Linux
+9. Android on `.NET 8`
 
 This order is recommended for practical rollout, not as a permanent priority
 statement.
@@ -328,8 +404,10 @@ statement.
 ## 14. Documentation Requirements
 
 All public documentation must clearly communicate:
-- that `.NET Framework 4.8` is Windows-only
-- that `.NET 8` is the cross-platform target
+- that standard `.NET Framework 4.8` is Windows-only
+- that `.NET 8` is the primary standard cross-platform target
+- that Unity 6 compatibility must be evaluated separately from standard .NET
+  runtime statements
 - that Android support depends on provider/runtime validation
 - that runtime packaging may differ by platform
 - exactly which files consumers need to include for each target
@@ -345,6 +423,7 @@ Future evaluation may include:
 - additional mobile/runtime targets
 - packaging simplification
 - expanded support statements after implementation validation
+- expanded Unity-specific guidance
 
 These future considerations must remain incremental and must not destabilize the
 initial public contract surface.
