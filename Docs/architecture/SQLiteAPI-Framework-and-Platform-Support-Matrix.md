@@ -31,6 +31,15 @@ The framework and platform support strategy must satisfy the following goals:
 - Minimize consumer confusion regarding DLL usage and deployment expectations
 - Support open-source adoption with predictable compatibility guidance
 
+### 2.1 Platform Equality and Consumer Priority
+
+SQLiteAPI should treat approved platforms as equal in architectural intent, even
+when validation maturity progresses in phases.
+
+Unity 6 is a primary consumer profile and should therefore receive explicit
+attention in validation planning and support guidance, but this priority must
+not be interpreted as making SQLiteAPI a Unity-specific API.
+
 ## 3. Approved Initial Target Frameworks
 
 SQLiteAPI should initially target:
