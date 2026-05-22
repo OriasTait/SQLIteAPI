@@ -274,26 +274,28 @@ Expected contents:
 
 ## 7. Proposed Deliverables
 
-The final implementation should produce reusable assemblies whose names begin
-with `SQLiteAPI`.
+The final implementation should produce reusable consumer-facing assemblies whose
+names begin with `SQLiteAPI`.
 
-The exact naming may be refined during implementation, but the initial target
-family is:
-- `SQLiteAPI.Contracts`
-- `SQLiteAPI.Application`
-- `SQLiteAPI.Infrastructure.SQLite`
-
-Framework-specific build outputs may use names such as:
-- `SQLiteAPI.Contracts_NET48.dll`
-- `SQLiteAPI.Contracts_NET8.dll`
-- `SQLiteAPI.Application_NET48.dll`
-- `SQLiteAPI.Application_NET8.dll`
-- `SQLiteAPI.Infrastructure.SQLite_NET48.dll`
-- `SQLiteAPI.Infrastructure.SQLite_NET8.dll`
+The exact naming may be refined during implementation, but the initial
+consumer-facing assembly family should be:
+- `SQLiteAPI.Contracts.dll`
+- `SQLiteAPI.App.dll`
+- `SQLiteAPI.Sqlite.dll`
 
 A sample application may also be produced, for example:
-- `SQLiteAPI.ConsoleSample_NET48.exe`
-- `SQLiteAPI.ConsoleSample_NET8.exe`
+- `SQLiteAPI.ConsoleSample.exe`
+
+Target framework distinctions should normally be expressed through output folder
+structure, package layout, or release metadata rather than repeated in the DLL
+file name.
+
+For example:
+- `bin/Release/net48/SQLiteAPI.Contracts.dll`
+- `bin/Release/net8.0/SQLiteAPI.Contracts.dll`
+
+This keeps consumer-facing artifacts concise while allowing the internal
+solution structure to remain detailed and architecture-compliant.
 
 ## 8. Packaging Strategy
 
@@ -306,6 +308,9 @@ The packaging approach should:
 - Keep Contracts stable
 - Keep implementation replaceable if needed later
 - Support framework-specific builds cleanly
+- Prefer concise consumer-facing assembly names
+- Avoid repeating framework identifiers in DLL file names unless a specific
+  distribution scenario requires it
 - Be suitable for open-source distribution
 
 ### 8.2 Initial Recommendation
