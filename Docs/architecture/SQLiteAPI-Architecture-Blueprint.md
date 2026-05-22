@@ -52,16 +52,59 @@ The solution must account for the following operating systems:
 - Linux
 - Android
 
-### 3.3 Platform Clarification
+### 3.3 Runtime and Consumer Clarification
 
-.NET Framework 4.8 is Windows-only.
+Support must distinguish between:
+- standard .NET runtime support
+- Unity consumer compatibility
+- provider/runtime packaging validation
 
-Therefore:
-- `NET48` deliverables are intended for Windows environments only
-- `.NET 8` deliverables are intended to support Windows, macOS, Linux, and
-  Android, subject to provider/runtime packaging constraints
+### 3.4 Standard .NET Runtime Position
 
-This distinction must be clearly documented in all public reference material.
+For standard .NET consumers:
+- `.NET Framework 4.8` is supported on Windows only
+- `.NET 8` is the primary modern cross-platform target
+
+This reflects the standard Microsoft .NET runtime position for general-purpose
+consumer applications and libraries.
+
+### 3.5 Unity 6 Consumer Clarification
+
+Unity 6 consumers must be treated as a distinct compatibility scenario.
+
+Unity's `NET_Unity_4_8` API compatibility level targets the union of the
+`.NET Framework 4.8` and `.NET Standard 2.1` API surface. This means a managed
+assembly that is compatible with Unity's scripting environment may be consumable
+by Unity projects across multiple platforms, even though the standard
+`.NET Framework 4.8` runtime itself is Windows-only.
+
+Therefore, the statement that `.NET Framework 4.8` is Windows-only applies to
+standard .NET runtime usage, but must not be interpreted to mean that Unity 6
+projects are restricted to Windows when consuming compatible assemblies.
+
+### 3.6 Unity Platform Validation Requirement
+
+Unity cross-platform support does not automatically guarantee that every
+SQLiteAPI assembly, provider choice, native SQLite runtime dependency, or
+execution path will behave identically on all Unity targets.
+
+Unity commonly uses IL2CPP for platform builds, which converts managed IL to C++
+and compiles it into platform-specific native code as part of an ahead-of-time
+workflow. This can affect packaging, native interop, reflection behavior,
+generic code paths, and provider/runtime compatibility.
+
+For that reason, Unity support for Windows, macOS, Linux, and Android must be
+treated as validated support rather than assumed support.
+
+### 3.7 Architectural Implication
+
+Because Unity 6 is an intended consumer, SQLiteAPI must be designed so that:
+- public Contracts remain provider-agnostic
+- Unity-compatible managed assemblies are possible where practical
+- provider and native runtime dependencies remain isolated to Infrastructure
+- platform support claims are based on tested runtime behavior
+- Unity-specific support notes are documented separately from standard .NET
+  runtime statements
 
 ## 4. Architectural Goals
 
