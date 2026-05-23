@@ -1,0 +1,1 @@
+The core purpose of the .github directory is to act as a central configuration hub for repository-level automation, policies, and AI/tooling behavior.
