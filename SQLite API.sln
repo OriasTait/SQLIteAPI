@@ -18,6 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Architecture", "Architectur
 		Docs\Architecture\04. SQLiteAPI-Packaging-and-Dependency-Strategy.md = Docs\Architecture\04. SQLiteAPI-Packaging-and-Dependency-Strategy.md
 		Docs\Architecture\05. SQLiteAPI-Provider-Selection-Decision.md = Docs\Architecture\05. SQLiteAPI-Provider-Selection-Decision.md
 		Docs\Architecture\06. SQLiteAPI-Design-Policy-Statement.md = Docs\Architecture\06. SQLiteAPI-Design-Policy-Statement.md
+		Docs\Architecture\07. SQLiteAPI-Requirements-Specification.md = Docs\Architecture\07. SQLiteAPI-Requirements-Specification.md
 	EndProjectSection
 EndProject
 Global
